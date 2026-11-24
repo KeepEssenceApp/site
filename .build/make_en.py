@@ -61,8 +61,8 @@ R = [
  ('href="#join">申请内测</a>', 'href="#join">Join the beta</a>'),
  # hero
  ('<h1>阅尽千芳，<br>只留<span class="gold">精华</span>。</h1>', '<h1>Save freely.<br>Keep the <span class="gold">essence</span>.</h1>'),
- ('<p class="hero-ans">存了几百条，一条都没再打开？</p>', '<p class="hero-ans">Hundreds saved. Not one opened again?</p>'),
- ('爱学习，爱收藏，然后就没有然后了。', 'You love learning. You love saving. And then… nothing.'),
+ ('<p class="hero-ans">专治「存了几百条，一条都没再打开」。</p>', '<p class="hero-ans">Built for people with hundreds saved and not one opened again.</p>'),
+ ('你爱学习，爱收藏，然后就没有然后了。', 'You love learning. You love saving. And then… nothing.'),
  ('<span class="gold">精华</span>按你的规则先筛一遍，再接上 AI 助手，陪你把值得的那几条聊透。', '<span class="gold">Keep Essence</span> filters everything by your rules first, then brings in your AI assistant to work through the few that matter.'),
  ('<mark class="hl">收藏的，真正变成你自己的。</mark>', '<mark class="hl">What you save finally becomes yours.</mark>'),
  ('href="#join">申请首批内测</a>', 'href="#join">Join the first beta</a>'),
