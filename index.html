@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keep Essence — Save Freely. Keep the Essence.</title>
+  <meta name="description" content="Save freely without hoarding. Everything you capture passes through a calm filter, raw links fade after 30 days, and your own assistant via MCP helps distill only what stays.">
+  <meta name="theme-color" content="#0B0B0B">
+
+  <link rel="canonical" href="https://keepessence.app/">
+  <link rel="alternate" hreflang="en" href="https://keepessence.app/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://keepessence.app/zh/">
+  <link rel="alternate" hreflang="x-default" href="https://keepessence.app/">
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/keepessence-favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/keepessence-icon-180.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KeepEssence">
+  <meta property="og:title" content="Keep Essence — Save Freely. Keep the Essence.">
+  <meta property="og:description" content="A calm reading filter that lets raw links fade after 30 days. Connect Claude, ChatGPT, Gemini, or your own agent via MCP to sift and distill only what stays.">
+  <meta property="og:url" content="https://keepessence.app/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:image" content="https://keepessence.app/assets/keepessence-lockup-h-dark-1600.png">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="321">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Keep Essence — Save Freely. Keep the Essence.">
+  <meta name="twitter:description" content="Save freely. Raw links fade in 30 days—only what you deep-dive stays. Works with Claude, ChatGPT, or Gemini via MCP.">
+  <meta name="twitter:image" content="https://keepessence.app/assets/keepessence-lockup-h-dark-1600.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://keepessence.app/#org",
+        "name": "KeepEssence",
+        "alternateName": "精华",
+        "url": "https://keepessence.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://keepessence.app/assets/keepessence-icon-512.png",
+          "width": 512,
+          "height": 512
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://keepessence.app/#website",
+        "url": "https://keepessence.app/",
+        "name": "KeepEssence",
+        "alternateName": "精华",
+        "inLanguage": ["en", "zh-Hans"],
+        "publisher": { "@id": "https://keepessence.app/#org" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://keepessence.app/#app",
+        "name": "KeepEssence",
+        "alternateName": "精华",
+        "url": "https://keepessence.app/",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Web, iOS",
+        "description": "An anti-hoarding, AI-filtered reading inbox that connects to Claude, ChatGPT, Gemini, and self-hosted agents over remote MCP and OAuth. Every captured item is distilled into a 4-line brief and a 9 PM Daily Digest, raw links expire quietly after 30 days, and only what you deep-dive becomes a permanent Note.",
+        "publisher": { "@id": "https://keepessence.app/#org" },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Core & Bring Your Own Assistant (MCP + OAuth)",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Free core platform, built-in routing assistant (up to 200 items/day), and Bring Your Own Assistants over MCP + OAuth."
+          },
+          {
+            "@type": "Offer",
+            "name": "Hosted Autonomous Assistants (Post-v1.0)",
+            "availability": "https://schema.org/PreOrder",
+            "description": "Optional paid tier planned post-v1.0 for zero-setup hosted automated briefs, nightly digests, and close reads."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://keepessence.app/#faq",
+        "isPartOf": { "@id": "https://keepessence.app/#website" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wait—it deletes my saved links after 30 days? What if I need one later?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If you did not read or deep-dive a raw link in 30 days, you were not going to—and its summary line stays in your Daily Digest permanently. You can extend an item's lifespan up to one year, or click Keep to remove expiry completely for rare references."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "No search and no folders? How do I find things?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "KeepEssence is the filter before your permanent notes, not another long-term archive. Every distilled Note is a clean, self-contained artifact you can download and export anywhere, and your connected AI assistant can still retrieve past digests and notes as context during a Deep Dive."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does connecting Claude, ChatGPT, or Gemini via MCP work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Paste one shared remote endpoint (https://keepessence.app/mcp) into your assistant's custom connector or MCP settings and approve access on KeepEssence's OAuth page. There are no static credentials or local command-line servers to manage, and you choose exactly which steps each assistant can run."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is KeepEssence different from Readwise Reader or Burn 451?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Archival readers like Readwise Reader are built for permanent accumulation, where MCP mainly queries a growing backlog. Countdown tools like Burn 451 rely on a 24-hour read-or-burn timer while still maintaining an article vault. KeepEssence runs autonomous AI triage before you read, delivers a calm 9 PM Daily Digest, lets raw links expire quietly after 30 days, and saves permanent Notes only when you deep-dive."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where does my data go when I connect an external AI assistant?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "During OAuth authorization, KeepEssence states explicitly that item content is sent to the assistant you select. Permissions are scoped per assistant and device, and you can revoke any assistant in one click from Assistant Settings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does KeepEssence cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The core platform, built-in routing assistant (up to 200 items/day), and Bring Your Own Assistants over MCP + OAuth are free. An optional paid tier for hosted autonomous assistants—giving zero-setup automated briefs, nightly digests, and close reads without self-hosting—is planned post-v1.0."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* KeepEssence (精华) — Self-Contained Black / White / Gold System
+     * Gold (#C5A229) is strictly reserved for essence that survives. */
+    :root {
+      --bg: #0B0B0B;
+      --s1: #141414;
+      --s2: #1C1C1B;
+      --bd: #262624;
+      --bd2: #3E3E3A;
+      --fg: #F5F5F3;
+      --fg2: #B6B6B1;
+      --fg3: #858580;
+      --white: #FFFFFF;
+      --gold: #C5A229;
+      --red: #F2877B;
+      --font: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --max: 1120px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: var(--bg); color: var(--fg); font: 16px/1.55 var(--font); -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--fg); }
+    a { color: var(--fg); text-decoration: none; }
+    svg { display: block; max-width: 100%; }
+    button, input { font-family: inherit; }
+    :focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 40; background: rgba(11,11,11,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--bd); }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 700; font-size: 17px; letter-spacing: -.02em; color: var(--white); }
+    .nav-r { display: flex; align-items: center; gap: 18px; }
+    .nav-links { display: flex; gap: 20px; font-size: 13px; }
+    .nav-links a { color: var(--fg3); }
+    .nav-links a:hover { color: var(--fg); }
+    .lang { display: inline-flex; align-items: center; height: 30px; padding: 0 10px; border: 1px solid var(--bd); border-radius: 6px; font: 12px var(--mono); color: var(--fg2); }
+    .lang:hover { border-color: var(--bd2); color: var(--fg); }
+
+    /* Buttons — Monochrome only */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 18px; border-radius: 6px; font-size: 14px; font-weight: 500; border: 1px solid transparent; cursor: pointer; white-space: nowrap; transition: background .15s, border-color .15s, color .15s; }
+    .btn-sm { height: 30px; padding: 0 12px; font-size: 12.5px; }
+    .btn-w { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+    .btn-w:hover { background: var(--white); border-color: var(--white); }
+    .btn-o { background: transparent; color: var(--fg); border-color: var(--bd2); }
+    .btn-o:hover { background: var(--s2); border-color: var(--fg3); }
+    .btn[disabled] { opacity: .55; cursor: not-allowed; }
+
+    /* Dots */
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot-w { background: var(--fg); }
+    .dot-g { background: var(--gold); }
+    .dot-gr { border: 1.6px solid var(--gold); background: transparent; }
+    .dot-m { border: 1.5px solid var(--fg3); background: transparent; }
+
+    /* Hero — Split + Live Interactive Sieve */
+    .hero { padding: 52px 0 56px; border-bottom: 1px solid var(--bd); }
+    .hero-g { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 48px; align-items: center; }
+    .eyebrow { font: 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); margin-bottom: 14px; }
+    h1 { margin: 0 0 16px; font-size: clamp(36px, 4.8vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -.035em; }
+    .hero-sub { margin: 0 0 24px; font-size: clamp(15.5px, 1.5vw, 18px); color: var(--fg2); max-width: 40ch; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+    .whisper { margin: 0; font-size: 12px; color: var(--fg3); }
+
+    /* Interactive Hero Sieve */
+    .stage { display: flex; flex-direction: column; align-items: center; }
+    .pick-hint { font: 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg3); margin-bottom: 8px; }
+    .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; width: 100%; }
+    .chip-btn {
+      display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px;
+      border-radius: 6px; border: 1px solid var(--bd); background: var(--s1);
+      color: var(--fg3); font-size: 12.5px; cursor: pointer; transition: border-color .15s, color .15s, background .15s;
+    }
+    .chip-btn:hover { border-color: var(--bd2); color: var(--fg2); }
+    .chip-btn[aria-pressed="true"] { border-color: var(--fg); background: var(--s2); color: var(--fg); }
+
+    .funnel-link { display: flex; flex-direction: column; align-items: center; padding: 8px 0; }
+    .funnel-pill {
+      display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px;
+      border: 1px solid var(--bd2); border-radius: 999px; background: var(--bg);
+      font: 11px var(--mono); color: var(--fg2);
+    }
+
+    .brief {
+      width: 100%; background: var(--s1); border: 1px solid var(--bd2); border-radius: 12px;
+      padding: 18px 20px; box-shadow: 0 24px 48px -30px #000;
+      transition: opacity .15s ease;
+    }
+    .b-top { display: flex; justify-content: space-between; font: 11px var(--mono); color: var(--fg3); padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px solid var(--bd); }
+    .b-title { margin: 0 0 12px; font-size: 15.5px; font-weight: 600; line-height: 1.35; }
+    .b-rows { display: grid; gap: 8px; margin-bottom: 14px; }
+    .b-row { display: grid; grid-template-columns: 68px 1fr; gap: 10px; font-size: 13px; align-items: baseline; }
+    .b-k { font: 10.5px var(--mono); color: var(--fg3); text-transform: uppercase; }
+    .b-v { margin: 0; color: var(--fg2); }
+    .b-v strong { color: var(--fg); font-weight: 500; }
+    .v-gold { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--gold); }
+    .v-white { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; color: var(--fg); }
+    .v-mute { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--fg3); }
+    .b-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid var(--bd); }
+    .b-acts { display: flex; gap: 6px; flex-wrap: wrap; }
+    .mpill { padding: 5px 10px; border-radius: 6px; font-size: 12px; border: 1px solid var(--bd); background: var(--bg); color: var(--fg2); cursor: pointer; }
+    .mpill.on { background: var(--fg); color: var(--bg); border-color: var(--fg); font-weight: 500; }
+    .mpill:hover { border-color: var(--bd2); color: var(--fg); }
+    .mpill.on:hover { background: var(--white); color: var(--bg); }
+    .b-msg { font-size: 11.5px; color: var(--fg3); min-height: 16px; margin-top: 7px; }
+
+    /* 4-Number Strip */
+    .nums { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--bd); }
+    .num { padding: 24px 20px; border-right: 1px solid var(--bd); }
+    .num:last-child { border-right: 0; }
+    .num b { display: block; font: 600 clamp(26px, 2.8vw, 34px)/1 var(--mono); letter-spacing: -.03em; margin-bottom: 6px; }
+    .num span { font-size: 12.5px; color: var(--fg3); }
+
+    /* Sections */
+    .sec { padding: 60px 0; border-bottom: 1px solid var(--bd); }
+    .sh { max-width: 600px; margin-bottom: 30px; }
+    .sh h2 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 32px); font-weight: 650; line-height: 1.15; letter-spacing: -.025em; }
+    .sh p { margin: 0; font-size: 14.5px; color: var(--fg2); }
+
+    /* Pain -> Solution Matrix + Reader Quotes */
+    .pain-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .9fr); gap: 20px; align-items: start; }
+    .pain-rows { display: grid; gap: 8px; }
+    .pain-row {
+      display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1.08fr); gap: 12px; align-items: center;
+      padding: 14px 16px; background: var(--s1); border: 1px solid var(--bd); border-radius: 10px;
+    }
+    .p-bad strong { display: block; font-size: 13.5px; color: var(--fg2); font-weight: 600; margin-bottom: 2px; }
+    .p-bad span { font-size: 12px; color: var(--fg3); line-height: 1.45; display: block; }
+    .p-arr { text-align: center; font: 15px var(--mono); color: var(--fg3); }
+    .p-fix strong { display: block; font-size: 13.5px; color: var(--fg); font-weight: 600; margin-bottom: 2px; }
+    .p-fix span { font-size: 12px; color: var(--fg2); line-height: 1.45; display: block; }
+    .quotes { display: grid; gap: 10px; }
+    .qcard {
+      margin: 0; padding: 15px 16px; background: var(--s1); border: 1px solid var(--bd);
+      border-left: 2px solid var(--bd2); border-radius: 8px; font-size: 13px; color: var(--fg); line-height: 1.55;
+    }
+    .qcard cite { display: block; margin-top: 6px; font: 11px var(--mono); font-style: normal; color: var(--fg3); }
+
+    /* 3 Phones */
+    .phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .pcol { display: flex; flex-direction: column; gap: 10px; }
+    .phone {
+      background: #0E0E0E; border: 1px solid var(--bd2); border-radius: 22px;
+      padding: 13px; display: flex; flex-direction: column; min-height: 416px;
+      position: relative; overflow: hidden; box-shadow: 0 18px 40px -24px #000;
+    }
+    .notch { width: 64px; height: 4px; border-radius: 99px; background: var(--bd2); margin: 0 auto 12px; }
+    .ptop { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--fg3); margin-bottom: 10px; position: relative; z-index: 1; }
+    .ptop strong { font-size: 15px; color: var(--fg); font-weight: 650; }
+    .pbg-dots { position: absolute; top: 14px; right: 14px; opacity: .16; pointer-events: none; }
+    .pbar { display: flex; align-items: center; gap: 6px; padding: 5px 9px; background: var(--s2); border-radius: 6px; font-size: 10.5px; color: var(--fg3); margin-bottom: 10px; position: relative; z-index: 1; }
+    .pcard { background: var(--s1); border: 1px solid var(--bd); border-radius: 9px; padding: 11px 12px; margin-bottom: 9px; position: relative; z-index: 1; }
+    .pcard h4 { margin: 0 0 4px; font-size: 13px; font-weight: 600; line-height: 1.3; }
+    .pcard p { margin: 0; font-size: 11.5px; color: var(--fg2); line-height: 1.4; }
+    .pmeta { display: flex; justify-content: space-between; font: 10px var(--mono); color: var(--fg3); margin-bottom: 4px; }
+
+    /* Interactive Swipe Card */
+    .sw-wrap { position: relative; border-radius: 9px; overflow: hidden; margin-bottom: 9px; border: 1px solid var(--bd); background: #20201E; }
+    .sw-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; font-size: 11px; font-weight: 600; }
+    .sw-fg { position: relative; background: var(--s1); padding: 10px 12px; border-left: 1px solid var(--bd2); transform: translateX(60px); transition: transform .2s ease; cursor: pointer; }
+    .sw-wrap[data-sw="left"] .sw-fg { transform: translateX(-60px); border-left: 0; border-right: 1px solid var(--bd2); }
+    .sw-wrap[data-sw="rest"] .sw-fg { transform: translateX(0); border: 0; }
+    .sw-fg h4 { margin: 0 0 2px; font-size: 12.5px; font-weight: 600; }
+    .sw-fg p { margin: 0; font-size: 11px; color: var(--fg3); }
+
+    .d-num { font-size: 13.5px; font-weight: 600; margin: 0 0 9px; }
+    .d-fold { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 7px 10px; background: var(--s1); border: 1px solid var(--bd); border-radius: 8px; color: var(--fg3); font-size: 11.5px; cursor: pointer; margin-bottom: 8px; }
+    .d-fold-list { list-style: none; margin: 0 0 8px; padding: 6px 10px; background: var(--bg); border: 1px solid var(--bd); border-radius: 8px; font-size: 11px; color: var(--fg3); display: grid; gap: 4px; }
+    .d-fold-list[hidden] { display: none; }
+    .d-q { border-left: 2px solid var(--bd2); padding: 7px 9px; background: var(--s1); font-size: 11.5px; color: var(--fg2); margin: 4px 0 10px; }
+    .pbtn { margin-top: auto; width: 100%; height: 32px; border-radius: 6px; border: 0; background: var(--fg); color: var(--bg); font-size: 12px; font-weight: 600; cursor: pointer; }
+    .pbtn:hover { background: var(--white); }
+
+    .note-box { background: var(--s1); border: 1px solid var(--bd2); border-radius: 9px; padding: 11px 12px; margin-bottom: 10px; }
+    .note-h { display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; margin-bottom: 5px; }
+    .cal-card { margin-top: auto; background: var(--bg); border: 1px solid var(--bd); border-radius: 9px; padding: 11px; text-align: center; }
+    .cal-t { display: flex; justify-content: space-between; font: 10px var(--mono); color: var(--fg3); margin-bottom: 7px; }
+    .cal-card svg { margin: 0 auto; }
+    .cal-f { font: 10px var(--mono); color: var(--fg3); margin-top: 7px; }
+    .pcap { padding: 0 2px; }
+    .pcap strong { display: block; font-size: 14px; margin-bottom: 2px; }
+    .pcap span { font-size: 12.5px; color: var(--fg3); }
+
+    /* Visual Triad */
+    .triad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tcard { background: var(--s1); border: 1px solid var(--bd); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 11px; }
+    .tcard.win { border-color: var(--bd2); background: #161615; }
+    .tviz { height: 108px; background: var(--bg); border: 1px solid var(--bd); border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 8px; }
+    .ttag { font: 10.5px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--fg3); }
+    .tcard h3 { margin: 0; font-size: 15.5px; font-weight: 600; }
+    .tcard p { margin: 0; font-size: 13px; color: var(--fg2); }
+
+    /* MCP Visual Strip */
+    .mcp-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 16px; background: var(--s1); border: 1px solid var(--bd2); border-radius: 8px; margin-bottom: 18px; }
+    .mcp-url { font: 600 14.5px var(--mono); color: var(--fg); }
+    .mcp-note { font-size: 12px; color: var(--fg3); margin-left: 8px; }
+    .mcp-grid { display: grid; grid-template-columns: 1fr auto 1.05fr auto 1.35fr; gap: 12px; align-items: center; padding: 20px; background: var(--s1); border: 1px solid var(--bd); border-radius: 12px; margin-bottom: 14px; }
+    .mcol { display: grid; gap: 7px; }
+    .mlab { font: 10px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--fg3); }
+    .mnode { padding: 8px 11px; background: var(--bg); border: 1px solid var(--bd); border-radius: 6px; font-size: 12.5px; display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+    .mnode strong { font-weight: 500; }
+    .mnode span { font-size: 11px; color: var(--fg3); text-align: right; }
+    .mhub { padding: 18px 14px; background: var(--bg); border: 1px solid var(--bd2); border-radius: 8px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+    .mhub strong { font-size: 13.5px; }
+    .mhub span { font-size: 11px; color: var(--fg3); line-height: 1.4; }
+    .marr { text-align: center; font: 16px var(--mono); color: var(--fg3); }
+    .prow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ppill { padding: 13px 16px; background: var(--s1); border: 1px solid var(--bd); border-radius: 8px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .ppill strong { font-size: 13.5px; }
+    .ppill span { font-size: 12.5px; color: var(--fg3); }
+
+    /* Pill Waitlist Form */
+    .join { max-width: 700px; margin: 0 auto; background: var(--s1); border: 1px solid var(--bd2); border-radius: 14px; padding: 28px; }
+    .join h2 { margin: 0 0 6px; font-size: clamp(22px, 2.8vw, 28px); letter-spacing: -.02em; }
+    .join .lead { margin: 0 0 20px; font-size: 14px; color: var(--fg2); }
+    .wform { display: grid; gap: 16px; }
+    .wlbl { display: block; font-size: 12.5px; font-weight: 500; margin-bottom: 7px; }
+    .winp { width: 100%; height: 40px; padding: 0 13px; border-radius: 6px; border: 1px solid var(--bd2); background: var(--bg); color: var(--fg); font-size: 14px; }
+    .winp::placeholder { color: var(--fg3); }
+    .pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .popt { position: relative; display: inline-flex; align-items: center; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--bd); background: var(--bg); font-size: 12.5px; color: var(--fg2); cursor: pointer; user-select: none; }
+    .popt:hover { border-color: var(--bd2); color: var(--fg); }
+    .popt input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+    .popt:has(input:checked) { background: var(--fg); color: var(--bg); border-color: var(--fg); font-weight: 500; }
+    .fstatus { padding: 10px 13px; border-radius: 6px; background: var(--s2); border: 1px solid var(--bd2); font-size: 13px; }
+    .fstatus.err { border-color: var(--red); color: var(--red); }
+
+    /* Compact FAQ */
+    .faqs { display: grid; gap: 7px; max-width: 760px; }
+    .faq { background: var(--s1); border: 1px solid var(--bd); border-radius: 6px; }
+    .faq summary { list-style: none; padding: 13px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font: 15px var(--mono); color: var(--fg3); }
+    .faq[open] summary::after { content: "−"; color: var(--fg); }
+    .faq p { margin: 0; padding: 0 16px 14px; font-size: 13px; color: var(--fg2); line-height: 1.6; }
+
+    /* Footer */
+    .foot { padding: 30px 0 40px; }
+    .foot-in { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--fg3); }
+    .foot-l { display: flex; align-items: center; gap: 10px; }
+    .foot-l strong { color: var(--fg); }
+    .foot-r { display: flex; gap: 16px; }
+    .foot-r a { color: var(--fg3); }
+    .foot-r a:hover { color: var(--fg); }
+
+    @media (max-width: 960px) {
+      .hero-g, .pain-grid, .phones, .triad, .mcp-grid, .prow { grid-template-columns: 1fr; }
+      .pain-row { grid-template-columns: 1fr; gap: 6px; }
+      .p-arr { text-align: left; transform: rotate(90deg); width: fit-content; }
+      .marr { transform: rotate(90deg); }
+      .nums { grid-template-columns: repeat(2, 1fr); }
+      .num:nth-child(2) { border-right: 0; }
+      .num:nth-child(1), .num:nth-child(2) { border-bottom: 1px solid var(--bd); }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { padding: 34px 0 42px; }
+      .sec { padding: 44px 0; }
+      .join { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-in">
+      <a class="brand" href="/" aria-label="Keep Essence Home">
+        <svg width="26" height="26" viewBox="136 136 752 752" aria-hidden="true">
+          <g fill="#FFFFFF">
+            <polygon points="204,234 306,234 532,460 430,460"/>
+            <polygon points="204,790 306,790 532,564 430,564"/>
+            <rect x="510" y="234" width="342" height="72"/>
+            <rect x="510" y="718" width="342" height="72"/>
+            <rect x="510" y="234" width="72" height="226"/>
+            <rect x="510" y="564" width="72" height="226"/>
+            <polygon points="228,376 284,472 172,472"/>
+            <rect x="174" y="536" width="108" height="108"/>
+          </g>
+          <circle cx="704" cy="512" r="56" fill="#C5A229"/>
+        </svg>
+        <span>Keep Essence</span>
+      </a>
+      <nav class="nav-r" aria-label="Primary">
+        <div class="nav-links">
+          <a href="#screens">Screens</a>
+          <a href="#why">Why</a>
+          <a href="#mcp">MCP</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a class="lang" href="/zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>
+        <a class="btn btn-w btn-sm" href="#join">Join seed</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: 5-Word Manifesto + Interactive Live Sieve -->
+    <section class="hero">
+      <div class="wrap hero-g">
+        <div>
+          <div class="eyebrow">Keep Essence · Remote MCP + OAuth</div>
+          <h1>Save freely.<br>Keep the essence.</h1>
+          <p class="hero-sub">Everything you capture passes through a calm filter—raw links fade after 30 days, and your own assistant helps surface and distill only what stays with you.</p>
+          <div class="hero-cta">
+            <a class="btn btn-w" href="#join">Request seed access</a>
+            <a class="btn btn-o" href="#screens">See the screens</a>
+          </div>
+          <p class="whisper">Works on its own, and connects free to Claude, ChatGPT, Gemini, or your own agent.</p>
+        </div>
+
+        <div class="stage" aria-label="Interactive brief sieve">
+          <div class="pick-hint">Click a capture to see how Keep Essence sifts it</div>
+          <div class="chips" role="group" aria-label="Sample captures">
+            <button class="chip-btn" type="button" data-sample="essay" aria-pressed="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><polygon points="6,1 11,10 1,10" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+              Essay · 16m
+            </button>
+            <button class="chip-btn" type="button" data-sample="repo" aria-pressed="false">
+              <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+              GitHub Repo
+            </button>
+            <button class="chip-btn" type="button" data-sample="thread" aria-pressed="false">
+              <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+              Hyped Thread
+            </button>
+          </div>
+
+          <div class="funnel-link" aria-hidden="true">
+            <svg width="2" height="12" viewBox="0 0 2 12"><line x1="1" y1="0" x2="1" y2="12" stroke="#3E3E3A" stroke-width="1.5"/></svg>
+            <span class="funnel-pill">
+              <svg width="13" height="13" viewBox="168 152 720 720">
+                <g fill="#FFFFFF">
+                  <polygon points="204,234 306,234 532,460 430,460"/>
+                  <polygon points="204,790 306,790 532,564 430,564"/>
+                  <rect x="510" y="234" width="342" height="72"/>
+                  <rect x="510" y="718" width="342" height="72"/>
+                  <rect x="510" y="234" width="72" height="226"/>
+                  <rect x="510" y="564" width="72" height="226"/>
+                </g>
+                <circle cx="704" cy="512" r="56" fill="#C5A229"/>
+              </svg>
+              4-Line Brief
+            </span>
+            <svg width="2" height="12" viewBox="0 0 2 12"><line x1="1" y1="0" x2="1" y2="12" stroke="#3E3E3A" stroke-width="1.5"/></svg>
+          </div>
+
+          <article class="brief" data-hero-brief>
+            <div class="b-top">
+              <span data-b-src>engineering.example · 14m ago</span>
+              <span data-b-life>29d left</span>
+            </div>
+            <h2 class="b-title" data-b-title>Why Long-Horizon Agents Lose Signal Across Tool Loops</h2>
+            <div class="b-rows">
+              <div class="b-row">
+                <span class="b-k">What</span>
+                <p class="b-v"><strong data-b-what>Post-mortem on context decay after 40+ tool calls.</strong></p>
+              </div>
+              <div class="b-row">
+                <span class="b-k">Facts</span>
+                <p class="b-v" data-b-facts>16 min read · 3 reproducible benchmark traces</p>
+              </div>
+              <div class="b-row">
+                <span class="b-k">Takeaway</span>
+                <p class="b-v" data-b-key>Isolating raw tool logs from checkpoints cut loop failures in half.</p>
+              </div>
+              <div class="b-row">
+                <span class="b-k">Verdict</span>
+                <span class="v-gold" data-b-verdict><span class="dot dot-gr"></span>Worth digging into</span>
+              </div>
+            </div>
+            <div class="b-foot">
+              <div class="b-acts">
+                <button class="mpill on" type="button" data-act="deepdive">Deep Dive</button>
+                <button class="mpill" type="button" data-act="dismiss">Not interested</button>
+                <button class="mpill" type="button" data-act="seen">Seen</button>
+              </div>
+              <button class="mpill" type="button" data-act="keep">Keep</button>
+            </div>
+            <div class="b-msg" data-act-msg aria-live="polite"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4-Number Facts Strip -->
+    <div class="wrap">
+      <div class="nums">
+        <div class="num"><b>30d</b><span>Raw items expire quietly</span></div>
+        <div class="num"><b>4 lines</b><span>Fixed brief for any link or video</span></div>
+        <div class="num"><b>21:00</b><span>One calm plain-text digest</span></div>
+        <div class="num"><b>0</b><span>Folders, tags, or search bars</span></div>
+      </div>
+    </div>
+
+    <!-- Real Pain Points -> How Keep Essence Solves Them -->
+    <section class="sec" id="pains">
+      <div class="wrap">
+        <div class="sh">
+          <div class="eyebrow">The Real Problem</div>
+          <h2>Saving links and never reading them isn’t your fault.</h2>
+          <p>Most tools make capturing effortless, then dump 100% of the sorting and guilt back on you.</p>
+        </div>
+
+        <div class="pain-grid">
+          <div class="pain-rows">
+            <div class="pain-row">
+              <div class="p-bad">
+                <strong>The read-it-later graveyard</strong>
+                <span>Hundreds of saved links and open tabs pile up until opening the app feels like a chore.</span>
+              </div>
+              <div class="p-arr" aria-hidden="true">→</div>
+              <div class="p-fix">
+                <strong>30-day quiet expiry</strong>
+                <span>Unopened links fade out automatically; no red unread counts, no backlog guilt.</span>
+              </div>
+            </div>
+
+            <div class="pain-row">
+              <div class="p-bad">
+                <strong>9 out of 10 aren’t worth a full read</strong>
+                <span>Clickbait, fluff, and recycled takes bury the few pieces that actually matter to you.</span>
+              </div>
+              <div class="p-arr" aria-hidden="true">→</div>
+              <div class="p-fix">
+                <strong>4-line brief + 21:00 digest</strong>
+                <span>Uniform What / Facts / Takeaway / Verdict plus cross-links to past items—triage in 10 seconds.</span>
+              </div>
+            </div>
+
+            <div class="pain-row">
+              <div class="p-bad">
+                <strong>Scattered across apps &amp; self-DMs</strong>
+                <span>Links in chat-to-self, screenshots in camera roll, tabs on desktop—switching apps breaks flow.</span>
+              </div>
+              <div class="p-arr" aria-hidden="true">→</div>
+              <div class="p-fix">
+                <strong>One-tap capture, one skeleton</strong>
+                <span>Articles, videos, repos, threads, and screenshots land in one calm funnel without tagging.</span>
+              </div>
+            </div>
+
+            <div class="pain-row">
+              <div class="p-bad">
+                <strong>Saved ≠ internalized</strong>
+                <span>Highlighting feels productive, yet next month you remember almost nothing you saved.</span>
+              </div>
+              <div class="p-arr" aria-hidden="true">→</div>
+              <div class="p-fix">
+                <strong>Deep Dive → Permanent Note</strong>
+                <span>Interrogate the top 1–2 items with your own Claude or ChatGPT via MCP and keep only your conclusion.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="quotes" aria-label="Real reader quotes">
+            <blockquote class="qcard">
+              “For 9 out of 10 long reads, three minutes is exactly enough.”
+              <cite>Reddit · developer pre-reading hundreds of articles</cite>
+            </blockquote>
+            <blockquote class="qcard">
+              “2,446 saved articles in my paid read-it-later app—and an open rate close to zero.”
+              <cite>Jike · user canceling a paid read-it-later subscription</cite>
+            </blockquote>
+            <blockquote class="qcard">
+              “Too lazy to switch apps, so I message links to myself—until a phone switch wipes everything.”
+              <cite>V2EX · 53-reply thread on self-DM bookmarking</cite>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3-Phone Real Product Showcase -->
+    <section class="sec" id="screens">
+      <div class="wrap">
+        <div class="sh">
+          <div class="eyebrow">The Interface</div>
+          <h2>Capture. Filter. Internalize.</h2>
+          <p>Monochrome everywhere. Gold appears only on what survives.</p>
+        </div>
+
+        <div class="phones">
+          <!-- Phone 1 -->
+          <div class="pcol">
+            <div class="phone">
+              <div class="notch"></div>
+              <svg class="pbg-dots" width="112" height="72" viewBox="0 0 112 72" aria-hidden="true">
+                <circle cx="8" cy="8" r="2" fill="#858580"/><circle cx="24" cy="8" r="4" fill="#F5F5F3"/><circle cx="40" cy="8" r="4" fill="#C5A229"/><circle cx="56" cy="8" r="4" fill="#F5F5F3"/><circle cx="72" cy="8" r="4" fill="none" stroke="#858580" stroke-width="1.2"/><circle cx="88" cy="8" r="4" fill="#F5F5F3"/><circle cx="104" cy="8" r="2" fill="#858580"/>
+                <circle cx="8" cy="24" r="4" fill="#F5F5F3"/><circle cx="24" cy="24" r="4" fill="#C5A229"/><circle cx="40" cy="24" r="4" fill="#F5F5F3"/><circle cx="56" cy="24" r="4" fill="#F5F5F3"/><circle cx="72" cy="24" r="2" fill="#858580"/><circle cx="88" cy="24" r="4" fill="#C5A229"/><circle cx="104" cy="24" r="4" fill="#F5F5F3"/>
+                <circle cx="8" cy="40" r="2" fill="#858580"/><circle cx="24" cy="40" r="4" fill="#F5F5F3"/><circle cx="40" cy="40" r="4" fill="#F5F5F3"/><circle cx="56" cy="40" r="4" fill="#C5A229"/><circle cx="72" cy="40" r="4" fill="#F5F5F3"/><circle cx="88" cy="40" r="4" fill="none" stroke="#858580" stroke-width="1.2"/><circle cx="104" cy="40" r="4" fill="#C5A229"/>
+              </svg>
+              <div class="ptop"><strong>Today</strong><span></span></div>
+              <div class="pbar"><span class="dot dot-w"></span><span>2 assistants active · 14 captured</span></div>
+
+              <div class="pcard">
+                <div class="pmeta"><span>github.com · 11:48</span><span>30d</span></div>
+                <h4>example/durable-harness</h4>
+                <p>TypeScript · 2.1k stars. Tools declare replay safety up front.</p>
+                <div style="margin-top:6px"><span class="v-gold" style="font-size:11.5px"><span class="dot dot-gr"></span>Worth digging into</span></div>
+              </div>
+
+              <div class="sw-wrap" data-sw="right" title="Click to toggle swipe gesture">
+                <div class="sw-bg">
+                  <span style="color:var(--fg)">→ Queue</span>
+                  <span style="color:var(--fg3)">Skip ←</span>
+                </div>
+                <div class="sw-fg" data-sw-card>
+                  <h4>SQLite WAL under write pressure</h4>
+                  <p>Tap card to preview right / left swipe</p>
+                </div>
+              </div>
+
+              <div class="pcard" style="opacity:.55;margin-bottom:0">
+                <div class="pmeta"><span>video · 12m</span><span>7d</span></div>
+                <h4>Share extension walkthrough</h4>
+                <p>Matches your current setup · Skip</p>
+              </div>
+            </div>
+            <div class="pcap">
+              <strong>1. Today — 10-second triage</strong>
+              <span>Swipe right to queue Close Read. Swipe left to drop.</span>
+            </div>
+          </div>
+
+          <!-- Phone 2 -->
+          <div class="pcol">
+            <div class="phone">
+              <div class="notch"></div>
+              <div class="ptop">
+                <strong>Daily Digest</strong>
+                <span style="display:inline-flex;align-items:center;gap:5px"><span class="dot dot-g" data-unread-dot></span>21:00</span>
+              </div>
+              <p class="d-num">14 captured · 2 worth digging</p>
+
+              <div class="pcard">
+                <h4>Long-Horizon Agent Tool Loops</h4>
+                <p>Structured checkpoints beat raw context logs.</p>
+              </div>
+              <div class="pcard">
+                <h4>sqlite-vec vs. Flat Scans</h4>
+                <p>Under 50k personal docs, flat scan wins.</p>
+              </div>
+
+              <button class="d-fold" type="button" aria-expanded="false" data-fold-btn>
+                <span>Everything else (12)</span><span>▾</span>
+              </button>
+              <ul class="d-fold-list" data-fold-list hidden>
+                <li>Browser Engine v142 Release Notes · Skip</li>
+                <li>Minimalist CSS Systems Thread · Good to know</li>
+                <li>+ 10 more quietly expiring in 30d</li>
+              </ul>
+
+              <div class="d-q">
+                <strong style="display:block;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg3);margin-bottom:2px">One question before sleep</strong>
+                What single conclusion today deserves to survive past 30 days?
+              </div>
+
+              <button class="pbtn" type="button" data-goodnight data-read="false">Read, good night</button>
+            </div>
+            <div class="pcap">
+              <strong>2. 9 PM Digest — Calm closure</strong>
+              <span>Plain text. Never expires. No red badges if skipped.</span>
+            </div>
+          </div>
+
+          <!-- Phone 3 -->
+          <div class="pcol">
+            <div class="phone">
+              <div class="notch"></div>
+              <div class="ptop"><strong>Notes &amp; Grid</strong><span>Permanent</span></div>
+
+              <div class="note-box">
+                <div class="note-h"><span class="dot dot-g"></span><span>Isolate Tool Logs First</span></div>
+                <p style="margin:0 0 7px;font-size:11.5px;color:var(--fg2);line-height:1.45">Keep raw tool traces in a 30-day window. Promote only verified conclusions to permanent Notes.</p>
+                <div class="pmeta" style="margin:0"><span>Distilled via Claude</span><span>Export .md</span></div>
+              </div>
+
+              <div class="cal-card">
+                <div class="cal-t"><span>NOVEMBER</span><span>EMBEDDABLE SVG</span></div>
+                <svg width="192" height="118" viewBox="0 0 248 150" role="img" aria-label="Monthly Grid dot calendar with gold dots for permanent Notes">
+                  <circle cx="18" cy="18" r="2.2" fill="#4A4A48"/><circle cx="53" cy="18" r="5.5" fill="#F5F5F3"/><circle cx="88" cy="18" r="5.5" fill="#C5A229"/><circle cx="123" cy="18" r="5.5" fill="#F5F5F3"/><circle cx="158" cy="18" r="5.5" fill="none" stroke="#6B6B68" stroke-width="1.6"/><circle cx="193" cy="18" r="5.5" fill="#F5F5F3"/><circle cx="228" cy="18" r="2.2" fill="#4A4A48"/>
+                  <circle cx="18" cy="52" r="5.5" fill="#F5F5F3"/><circle cx="53" cy="52" r="5.5" fill="#C5A229"/><circle cx="88" cy="52" r="5.5" fill="#F5F5F3"/><circle cx="123" cy="52" r="5.5" fill="#F5F5F3"/><circle cx="158" cy="52" r="2.2" fill="#4A4A48"/><circle cx="193" cy="52" r="5.5" fill="#C5A229"/><circle cx="228" cy="52" r="5.5" fill="#F5F5F3"/>
+                  <circle cx="18" cy="86" r="2.2" fill="#4A4A48"/><circle cx="53" cy="86" r="5.5" fill="#F5F5F3"/><circle cx="88" cy="86" r="5.5" fill="#F5F5F3"/><circle cx="123" cy="86" r="5.5" fill="#C5A229"/><circle cx="158" cy="86" r="5.5" fill="#F5F5F3"/><circle cx="193" cy="86" r="5.5" fill="none" stroke="#6B6B68" stroke-width="1.6"/><circle cx="228" cy="86" r="5.5" fill="#C5A229"/>
+                  <circle cx="18" cy="120" r="5.5" fill="#F5F5F3"/><circle cx="53" cy="120" r="5.5" fill="#C5A229"/><rect x="76" y="108" width="24" height="24" fill="none" stroke="#858580" stroke-width="1.2"/><circle cx="88" cy="120" r="5.5" fill="none" stroke="#F5F5F3" stroke-width="1.6"/>
+                </svg>
+                <div class="cal-f">118 in · 20 digests · 6 gold notes</div>
+              </div>
+            </div>
+            <div class="pcap">
+              <strong>3. Notes &amp; Grid — Only gold stays</strong>
+              <span>Embed your privacy-safe dot calendar anywhere. Zero titles leaked.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Triad -->
+    <section class="sec" id="why">
+      <div class="wrap">
+        <div class="sh">
+          <div class="eyebrow">Why KeepEssence</div>
+          <h2>Neither a graveyard nor a ticking bomb.</h2>
+        </div>
+
+        <div class="triad">
+          <article class="tcard">
+            <div class="tviz" aria-hidden="true">
+              <svg width="160" height="82" viewBox="0 0 160 82" fill="none">
+                <rect x="12" y="6" width="136" height="7" fill="#262624"/>
+                <rect x="12" y="17" width="122" height="7" fill="#262624"/>
+                <rect x="12" y="28" width="136" height="7" fill="#2E2E2B"/>
+                <rect x="12" y="39" width="108" height="7" fill="#2E2E2B"/>
+                <rect x="12" y="50" width="136" height="7" fill="#3E3E3A"/>
+                <rect x="12" y="61" width="90" height="7" fill="#3E3E3A"/>
+                <rect x="92" y="52" width="58" height="20" rx="4" fill="#141414" stroke="#555550"/>
+                <text x="121" y="66" fill="#B6B6B1" font-family="monospace" font-size="10" text-anchor="middle">847 unread</text>
+              </svg>
+            </div>
+            <span class="ttag">Endless Archives</span>
+            <h3>Readwise, Raindrop, Notion</h3>
+            <p>Built to hoard forever. Even with MCP, you are only searching an overflowing attic.</p>
+          </article>
+
+          <article class="tcard">
+            <div class="tviz" aria-hidden="true">
+              <svg width="120" height="82" viewBox="0 0 120 82" fill="none">
+                <circle cx="60" cy="39" r="28" stroke="#F2877B" stroke-width="2" stroke-dasharray="132 45"/>
+                <path d="M60 22V39L71 46" stroke="#F2877B" stroke-width="2" stroke-linecap="square"/>
+                <text x="60" y="79" fill="#F2877B" font-family="monospace" font-size="10" text-anchor="middle">23:41 LEFT</text>
+              </svg>
+            </div>
+            <span class="ttag">24h Burn Timers</span>
+            <h3>Burn 451 &amp; countdown apps</h3>
+            <p>24-hour panic forces manual reading—still dumping saved links into another vault.</p>
+          </article>
+
+          <article class="tcard win">
+            <div class="tviz" aria-hidden="true">
+              <svg width="144" height="82" viewBox="136 136 752 752">
+                <g fill="#FFFFFF">
+                  <polygon points="204,234 306,234 532,460 430,460"/>
+                  <polygon points="204,790 306,790 532,564 430,564"/>
+                  <rect x="510" y="234" width="342" height="72"/>
+                  <rect x="510" y="718" width="342" height="72"/>
+                  <rect x="510" y="234" width="72" height="226"/>
+                  <rect x="510" y="564" width="72" height="226"/>
+                  <polygon points="228,376 284,472 172,472"/>
+                  <rect x="174" y="536" width="108" height="108"/>
+                </g>
+                <circle cx="704" cy="512" r="56" fill="#C5A229"/>
+              </svg>
+            </div>
+            <span class="ttag">Keep Essence</span>
+            <h3>Sift first. Internalize second.</h3>
+            <p>Your rules and assistant sift the pile first. Raw links fade in 30 days—only deep-dive notes stay.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual MCP Hub -->
+    <section class="sec" id="mcp">
+      <div class="wrap">
+        <div class="sh">
+          <div class="eyebrow">Bring Your Own Assistant</div>
+          <h2>One remote MCP URL. Standard OAuth.</h2>
+          <p>Zero local CLI hacks. Zero static credentials. Revoke any assistant in one click.</p>
+        </div>
+
+        <div class="mcp-bar">
+          <div>
+            <code class="mcp-url">https://keepessence.app/mcp</code>
+            <span class="mcp-note">Streamable HTTP · OAuth + PKCE</span>
+          </div>
+          <button class="btn btn-o btn-sm" type="button" data-copy="https://keepessence.app/mcp">Copy URL</button>
+        </div>
+
+        <div class="mcp-grid">
+          <div class="mcol">
+            <span class="mlab">Capture</span>
+            <div class="mnode"><strong>iOS Shortcut</strong><span>1 tap</span></div>
+            <div class="mnode"><strong>Browser Extension</strong><span>1 click</span></div>
+            <div class="mnode"><strong>Web Inbox</strong><span>Any device</span></div>
+          </div>
+
+          <div class="marr" aria-hidden="true">→</div>
+
+          <div class="mhub">
+            <svg width="32" height="32" viewBox="136 136 752 752" aria-hidden="true">
+              <g fill="#FFFFFF">
+                <polygon points="204,234 306,234 532,460 430,460"/>
+                <polygon points="204,790 306,790 532,564 430,564"/>
+                <rect x="510" y="234" width="342" height="72"/>
+                <rect x="510" y="718" width="342" height="72"/>
+                <rect x="510" y="234" width="72" height="226"/>
+                <rect x="510" y="564" width="72" height="226"/>
+                <polygon points="228,376 284,472 172,472"/>
+                <rect x="174" y="536" width="108" height="108"/>
+              </g>
+              <circle cx="704" cy="512" r="56" fill="#C5A229"/>
+            </svg>
+            <strong>KeepEssence Core</strong>
+            <span>30d auto-expiry<br>Free routing (200/day)<br>OAuth MCP server</span>
+          </div>
+
+          <div class="marr" aria-hidden="true">⇄</div>
+
+          <div class="mcol">
+            <span class="mlab">Your Assistants</span>
+            <div class="mnode"><strong>Claude</strong><span>Deep Dive · Read &amp; Write</span></div>
+            <div class="mnode"><strong>ChatGPT</strong><span>Web · Paste-back on Personal</span></div>
+            <div class="mnode"><strong>Gemini</strong><span>US Personal · @KeepEssence</span></div>
+            <div class="mnode"><strong>Scheduled Agent</strong><span>Brief · Digest · Close Read</span></div>
+          </div>
+        </div>
+
+        <div class="prow">
+          <div class="ppill"><strong>Free in v1.0</strong><span>Core + routing + BYO MCP assistants</span></div>
+          <div class="ppill"><strong>Paid post-v1.0</strong><span>Zero-setup hosted auto-brief &amp; nightly digest</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tactile Pill Waitlist -->
+    <section class="sec" id="join">
+      <div class="wrap">
+        <div class="join">
+          <div class="eyebrow">Seed Cohort</div>
+          <h2>Request seed access.</h2>
+          <p class="lead">Small batches first—prioritizing readers already using Claude, ChatGPT, Gemini, or self-hosted agents.</p>
+
+          <form class="wform" method="post" action="/api/v1/waitlist" data-waitlist-form data-api="/api/v1/waitlist" data-fallback-api="https://allkeep.yan.today/api/v1/waitlist" novalidate>
+            <div class="hp" aria-hidden="true">
+              <label for="hp-website">Website</label>
+              <input id="hp-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div>
+              <label class="wlbl" for="wl-email">Email</label>
+              <input class="winp" id="wl-email" name="email" type="email" required autocomplete="email" placeholder="you@domain.com">
+            </div>
+
+            <div>
+              <span class="wlbl">Where do your saved links pile up today?</span>
+              <div class="pills">
+                <label class="popt"><input type="radio" name="current_habit" value="readwise" checked>Readwise</label>
+                <label class="popt"><input type="radio" name="current_habit" value="raindrop">Raindrop</label>
+                <label class="popt"><input type="radio" name="current_habit" value="instapaper">Instapaper / Pocket</label>
+                <label class="popt"><input type="radio" name="current_habit" value="notion">Notion / Obsidian</label>
+                <label class="popt"><input type="radio" name="current_habit" value="tabs">Browser tabs</label>
+                <label class="popt"><input type="radio" name="current_habit" value="wechat">WeChat / Self-DM</label>
+                <label class="popt"><input type="radio" name="current_habit" value="other">Other</label>
+              </div>
+            </div>
+
+            <div>
+              <span class="wlbl">Primary AI assistant</span>
+              <div class="pills">
+                <label class="popt"><input type="radio" name="primary_assistant" value="claude" checked>Claude</label>
+                <label class="popt"><input type="radio" name="primary_assistant" value="chatgpt">ChatGPT</label>
+                <label class="popt"><input type="radio" name="primary_assistant" value="gemini">Gemini</label>
+                <label class="popt"><input type="radio" name="primary_assistant" value="self-hosted-agent">Self-hosted Agent</label>
+                <label class="popt"><input type="radio" name="primary_assistant" value="none">None yet</label>
+              </div>
+            </div>
+
+            <div>
+              <span class="wlbl">How do you want to start?</span>
+              <div class="pills">
+                <label class="popt"><input type="radio" name="seed_track" value="byo-now" checked>Free now with my own AI (MCP)</label>
+                <label class="popt"><input type="radio" name="seed_track" value="hosted-later">Wait for hosted auto-digest</label>
+              </div>
+            </div>
+
+            <div>
+              <label class="wlbl" for="wl-note">Biggest reading frustration? <span style="color:var(--fg3);font-weight:400">(optional)</span></label>
+              <input class="winp" id="wl-note" name="frustration" type="text" maxlength="240" placeholder="One sentence is plenty.">
+            </div>
+
+            <div><button class="btn btn-w" type="submit">Request seed access</button></div>
+            <div class="fstatus" data-form-status role="status" aria-live="polite" hidden></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compact Accordion FAQ -->
+    <section class="sec" id="faq">
+      <div class="wrap">
+        <div class="sh">
+          <div class="eyebrow">FAQ</div>
+          <h2>Direct answers.</h2>
+        </div>
+
+        <div class="faqs">
+          <details class="faq">
+            <summary>Wait—it deletes my saved links after 30 days? What if I need one later?</summary>
+            <p>If you did not read or deep-dive a raw link in 30 days, you were not going to—and its summary line stays in your Daily Digest permanently. You can extend an item's lifespan up to one year, or click Keep to remove expiry completely for rare references.</p>
+          </details>
+          <details class="faq">
+            <summary>No search and no folders? How do I find things?</summary>
+            <p>KeepEssence is the filter before your permanent notes, not another long-term archive. Every distilled Note is a clean, self-contained artifact you can download and export anywhere, and your connected AI assistant can still retrieve past digests and notes as context during a Deep Dive.</p>
+          </details>
+          <details class="faq">
+            <summary>How does connecting Claude, ChatGPT, or Gemini via MCP work?</summary>
+            <p>Paste one shared remote endpoint (https://keepessence.app/mcp) into your assistant's custom connector or MCP settings and approve access on KeepEssence's OAuth page. There are no static credentials or local command-line servers to manage, and you choose exactly which steps each assistant can run.</p>
+          </details>
+          <details class="faq">
+            <summary>How is KeepEssence different from Readwise Reader or Burn 451?</summary>
+            <p>Archival readers like Readwise Reader are built for permanent accumulation, where MCP mainly queries a growing backlog. Countdown tools like Burn 451 rely on a 24-hour read-or-burn timer while still maintaining an article vault. KeepEssence runs autonomous AI triage before you read, delivers a calm 9 PM Daily Digest, lets raw links expire quietly after 30 days, and saves permanent Notes only when you deep-dive.</p>
+          </details>
+          <details class="faq">
+            <summary>Where does my data go when I connect an external AI assistant?</summary>
+            <p>During OAuth authorization, KeepEssence states explicitly that item content is sent to the assistant you select. Permissions are scoped per assistant and device, and you can revoke any assistant in one click from Assistant Settings.</p>
+          </details>
+          <details class="faq">
+            <summary>What does KeepEssence cost?</summary>
+            <p>The core platform, built-in routing assistant (up to 200 items/day), and Bring Your Own Assistants over MCP + OAuth are free. An optional paid tier for hosted autonomous assistants—giving zero-setup automated briefs, nightly digests, and close reads without self-hosting—is planned post-v1.0.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <div class="foot-l">
+        <svg width="20" height="20" viewBox="168 152 720 720" aria-hidden="true">
+          <g fill="#FFFFFF">
+            <polygon points="204,234 306,234 532,460 430,460"/>
+            <polygon points="204,790 306,790 532,564 430,564"/>
+            <rect x="510" y="234" width="342" height="72"/>
+            <rect x="510" y="718" width="342" height="72"/>
+            <rect x="510" y="234" width="72" height="226"/>
+            <rect x="510" y="564" width="72" height="226"/>
+          </g>
+          <circle cx="704" cy="512" r="56" fill="#C5A229"/>
+        </svg>
+        <span><strong>Keep Essence</strong> · You are what you keep.</span>
+      </div>
+      <div class="foot-r">
+        <a href="#screens">Screens</a>
+        <a href="#mcp">MCP</a>
+        <a href="/llms.txt">llms.txt</a>
+        <a href="/zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (() => {
+    "use strict";
+    const SAMPLES = {
+      essay: {
+        src: "engineering.example · 14m ago", life: "29d left",
+        title: "Why Long-Horizon Agents Lose Signal Across Tool Loops",
+        what: "Post-mortem on context decay after 40+ tool calls.",
+        facts: "16 min read · 3 reproducible benchmark traces",
+        key: "Isolating raw tool logs from checkpoints cut loop failures in half.",
+        vClass: "v-gold", vDot: "dot-gr", vText: "Worth digging into"
+      },
+      repo: {
+        src: "github.com · 42m ago", life: "30d left",
+        title: "example/streamable-mcp-harness",
+        what: "Lightweight test suite for remote Streamable HTTP MCP servers.",
+        facts: "TypeScript · 1.4k stars · MIT · Updated yesterday",
+        key: "Tests OAuth PKCE refresh and idempotent tool retries in one CLI.",
+        vClass: "v-white", vDot: "dot-w", vText: "Good to know"
+      },
+      thread: {
+        src: "social.example · 2h ago", life: "7d left",
+        title: "12 Prompts That Will 10x Your Morning Productivity",
+        what: "Engagement thread recycling generic prompt templates with a paid link at the end.",
+        facts: "9 posts · 0 original benchmarks · Promotional footer",
+        key: "Repeats ideas already covered in your earlier notes; nothing new.",
+        vClass: "v-mute", vDot: "dot-m", vText: "Skip"
+      }
+    };
+
+    const brief = document.querySelector("[data-hero-brief]");
+    const actMsg = document.querySelector("[data-act-msg]");
+    document.querySelectorAll("[data-sample]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const s = SAMPLES[btn.dataset.sample];
+        if (!s || !brief) return;
+        document.querySelectorAll("[data-sample]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+        brief.querySelector("[data-b-src]").textContent = s.src;
+        brief.querySelector("[data-b-life]").textContent = s.life;
+        brief.querySelector("[data-b-title]").textContent = s.title;
+        brief.querySelector("[data-b-what]").textContent = s.what;
+        brief.querySelector("[data-b-facts]").textContent = s.facts;
+        brief.querySelector("[data-b-key]").textContent = s.key;
+        const v = brief.querySelector("[data-b-verdict]");
+        v.className = s.vClass;
+        v.innerHTML = `<span class="dot ${s.vDot}"></span>${s.vText}`;
+        if (actMsg) actMsg.textContent = "";
+      });
+    });
+
+    const ACT_TEXT = {
+      deepdive: "Queued for Deep Dive. Your scheduled assistant will close-read it next.",
+      dismiss: "Marked not interested. Moved to Everything else and logged as a negative signal.",
+      seen: "Marked seen. Moved to Everything else without altering your rules.",
+      keep: "Kept: 30-day auto-expiry removed for this item and its brief."
+    };
+    document.querySelectorAll("[data-act]").forEach((btn) => {
+      btn.addEventListener("click", () => { if (actMsg) actMsg.textContent = ACT_TEXT[btn.dataset.act] || ""; });
+    });
+
+    const swWrap = document.querySelector("[data-sw]");
+    const swCard = document.querySelector("[data-sw-card]");
+    if (swWrap && swCard) {
+      const states = ["right", "left", "rest"];
+      swCard.addEventListener("click", () => {
+        const idx = (states.indexOf(swWrap.dataset.sw) + 1) % states.length;
+        swWrap.dataset.sw = states[idx];
+      });
+    }
+
+    const foldBtn = document.querySelector("[data-fold-btn]");
+    const foldList = document.querySelector("[data-fold-list]");
+    if (foldBtn && foldList) {
+      foldBtn.addEventListener("click", () => {
+        const open = foldBtn.getAttribute("aria-expanded") === "true";
+        foldBtn.setAttribute("aria-expanded", String(!open));
+        foldList.hidden = open;
+      });
+    }
+
+    const gn = document.querySelector("[data-goodnight]");
+    const udot = document.querySelector("[data-unread-dot]");
+    if (gn) {
+      gn.addEventListener("click", () => {
+        const next = gn.dataset.read !== "true";
+        gn.dataset.read = String(next);
+        if (udot) udot.hidden = next;
+        gn.textContent = next ? "Marked read · Good night" : "Read, good night";
+      });
+    }
+
+    const copyBtn = document.querySelector("[data-copy]");
+    if (copyBtn) {
+      const url = copyBtn.dataset.copy;
+      const orig = copyBtn.textContent;
+      copyBtn.addEventListener("click", async () => {
+        try { await navigator.clipboard.writeText(url); } catch {}
+        copyBtn.textContent = "Copied";
+        setTimeout(() => { copyBtn.textContent = orig; }, 2000);
+      });
+    }
+
+    const form = document.querySelector("[data-waitlist-form]");
+    if (form) {
+      const box = form.querySelector("[data-form-status]");
+      const sub = form.querySelector('button[type="submit"]');
+      const show = (msg, err = false) => { box.textContent = msg; box.classList.toggle("err", err); box.hidden = false; };
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const fd = new FormData(form);
+        const email = String(fd.get("email") || "").trim();
+        const hp = String(fd.get("website") || "").trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return show("Please enter a valid email address.", true);
+        if (hp) { show("Request received. We will email you when your seed slot opens."); form.reset(); return; }
+        const habit = String(fd.get("current_habit") || "");
+        const assistant = String(fd.get("primary_assistant") || "");
+        const track = String(fd.get("seed_track") || "");
+        const note = String(fd.get("frustration") || "").trim();
+        const mappedCurrent = habit === "wechat" ? "wechat-fileassistant" : habit === "notion" ? "obsidian-clipper" : "other";
+        const payload = {
+          contact: email,
+          tier: track === "byo-now" ? "trial" : "pro",
+          source: "keepessence-en",
+          website: "",
+          answers: {
+            current: mappedCurrent,
+            current_other: mappedCurrent === "other" ? habit.slice(0, 60) : "",
+            has_agent: assistant === "none" ? "none" : assistant === "claude" ? "claude-code" : "other",
+            hosting: track === "hosted-later" ? "hosted" : "either",
+            tier_choice: track === "byo-now" ? "trial" : "pro",
+            why: [`habit=${habit}`, `assistant=${assistant}`, `track=${track}`, "lang=en", note ? `note=${note}` : ""].filter(Boolean).join(" | ").slice(0, 500)
+          }
+        };
+        const api = /^(www\.)?keepessence\.app$/.test(location.hostname) ? form.dataset.api : form.dataset.fallbackApi;
+        const orig = sub.textContent; sub.disabled = true; sub.textContent = "Submitting…";
+        try {
+          const r = await fetch(api, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+          const j = await r.json().catch(() => ({}));
+          if ((r.ok && j.ok !== false) || r.status === 409) {
+            show(j.duplicate || r.status === 409 ? "You are already on the seed list. We will reach out as your cohort opens." : "You are on the seed list. We will email you with your invite.");
+            form.reset();
+          } else if (r.status === 429) show("Too many requests right now. Please try again in a minute.", true);
+          else throw 0;
+        } catch { show("Could not reach the waitlist right now. Please try again shortly.", true); }
+        finally { sub.disabled = false; sub.textContent = orig; }
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
