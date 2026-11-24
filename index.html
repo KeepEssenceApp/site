@@ -403,6 +403,15 @@
     .popt:has(input:checked) { background: var(--fg); color: var(--bg); border-color: var(--fg); font-weight: 500; }
     .fstatus { padding: 10px 13px; border-radius: 6px; background: var(--s2); border: 1px solid var(--bd2); font-size: 13px; }
     .btn-wait, .btn-wait:hover { background: var(--s2); color: var(--fg3); border-color: var(--bd2); }
+    .wdone { width: min(420px, calc(100vw - 40px)); padding: 30px 26px 24px; border: 1px solid var(--gold); border-radius: 16px; background: var(--s1); color: var(--fg); text-align: center; box-shadow: 0 30px 80px -20px #000; }
+    .wdone::backdrop { background: rgba(0, 0, 0, .72); backdrop-filter: blur(3px); }
+    .wdone[open] { animation: wdone-in .22s ease-out; }
+    @keyframes wdone-in { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+    .wdone-mark { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: var(--gold); color: #0B0B0B; margin-bottom: 14px; }
+    .wdone-title { margin: 0 0 8px; font-size: 22px; font-weight: 650; letter-spacing: -.01em; }
+    .wdone-text { margin: 0 0 22px; font-size: 14.5px; line-height: 1.6; color: var(--fg2); overflow-wrap: anywhere; }
+    .wdone .btn { min-width: 120px; }
+    @media (prefers-reduced-motion: reduce) { .wdone[open] { animation: none; } }
     .fstatus.err { border-color: var(--red); color: var(--red); }
 
     .faqs { display: grid; gap: 7px; max-width: 760px; }
@@ -1086,6 +1095,13 @@
             <div><button class="btn btn-w" type="submit">Join the beta</button></div>
             <div class="fstatus" data-form-status role="status" aria-live="polite" hidden></div>
           </form>
+
+          <dialog class="wdone" data-done aria-labelledby="wdone-title">
+            <span class="wdone-mark" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 14 14"><path d="M2.5 7.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <p class="wdone-title" id="wdone-title" data-done-title>You’re in</p>
+            <p class="wdone-text" data-done-text></p>
+            <button class="btn btn-w" type="button" data-done-close>OK</button>
+          </dialog>
         </div>
       </div>
     </section>
@@ -1419,6 +1435,18 @@
       const box = form.querySelector("[data-form-status]");
       const sub = form.querySelector('button[type="submit"]');
       const show = (msg, err = false) => { box.textContent = msg; box.classList.toggle("err", err); box.hidden = false; };
+      // A successful sign-up is confirmed in a window as well as in the line under the button.
+      const done = document.querySelector("[data-done]");
+      const confirmDone = (title, text) => {
+        if (!done || typeof done.showModal !== "function") return;
+        done.querySelector("[data-done-title]").textContent = title;
+        done.querySelector("[data-done-text]").textContent = text;
+        if (!done.open) done.showModal();
+      };
+      if (done) {
+        done.querySelector("[data-done-close]").addEventListener("click", () => done.close());
+        done.addEventListener("click", (e) => { if (e.target === done) done.close(); });
+      }
       // Sign-ups go to worker.js on this same site. Set this to false to grey the button out and
       // send nothing (for example while the database is being moved).
       const WAITLIST_OPEN = true;
@@ -1450,7 +1478,10 @@
           const r = await fetch(api, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
           const j = await r.json().catch(() => ({}));
           if ((r.ok && j.ok !== false) || r.status === 409) {
-            show(j.duplicate || r.status === 409 ? "This email is already on the beta list. We’ll email you when your batch opens." : "You’re on the beta list. We’ll email you when a spot opens.");
+            const again = j.duplicate || r.status === 409;
+            show(again ? "This email is already on the beta list. We’ll email you when your batch opens." : "You’re on the beta list. We’ll email you when a spot opens.");
+            if (again) confirmDone("You’re already on the list", `${email} signed up earlier, so there’s nothing more to do. We’ll email you when a spot opens.`);
+            else confirmDone("You’re in", `${email} is on the beta list. We’ll email you when a spot opens.`);
             form.reset();
           } else if (r.status === 429) show("Too many attempts. Please try again in a minute.", true);
           else throw 0;

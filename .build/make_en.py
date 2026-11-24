@@ -313,7 +313,12 @@ R = [
  ('return show("请输入有效的电子邮箱地址。", true);', 'return show("Please enter a valid email address.", true);'),
  
  ('sub.textContent = "提交中…";', 'sub.textContent = "Sending…";'),
- ('"这个邮箱已在内测名单里，我们会按批次邮件通知。" : "已加入内测名单。开放名额时我们会通过邮件联系你。"', '"This email is already on the beta list. We’ll email you when your batch opens." : "You’re on the beta list. We’ll email you when a spot opens."'),
+ 
+ ('data-done-title>报名成功</p>', 'data-done-title>You’re in</p>'),
+ ('data-done-close>好的</button>', 'data-done-close>OK</button>'),
+ ('show(again ? "这个邮箱已在内测名单里，我们会按批次邮件通知。" : "已加入内测名单。开放名额时我们会通过邮件联系你。");', 'show(again ? "This email is already on the beta list. We’ll email you when your batch opens." : "You’re on the beta list. We’ll email you when a spot opens.");'),
+ ('if (again) confirmDone("你已经在名单里了", `${email} 之前报过名，不用重复提交。开放名额时我们会发邮件通知你。`);', 'if (again) confirmDone("You’re already on the list", `${email} signed up earlier, so there’s nothing more to do. We’ll email you when a spot opens.`);'),
+ ('else confirmDone("报名成功", `${email} 已加入内测名单。开放名额时我们会发邮件通知你。`);', 'else confirmDone("You’re in", `${email} is on the beta list. We’ll email you when a spot opens.`);'),
  ('show("提交过于频繁，请一分钟后再试。", true);', 'show("Too many attempts. Please try again in a minute.", true);'),
  ('show("暂时无法连接到等待列表服务，请稍后再试。", true);', 'show("Couldn’t reach the sign-up service. Please try again later.", true);'),
  ('lang: "zh-Hans",', 'lang: "en",'),
