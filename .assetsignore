@@ -1,0 +1,8 @@
+# Files in the repo that are not part of the website
+.git
+.gitignore
+.assetsignore
+.wrangler
+wrangler.toml
+README.md
+LICENSE

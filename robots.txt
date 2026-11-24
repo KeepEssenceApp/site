@@ -19,4 +19,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://keepessence.app/sitemap.xml
+Sitemap: https://www.keepessence.app/sitemap.xml

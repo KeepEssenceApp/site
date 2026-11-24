@@ -3,8 +3,8 @@
 > Save freely. Keep the essence. Everything you capture passes through a calm filter—raw links fade after 30 days, and your own assistant (via MCP + OAuth) helps sift and distill only what stays with you.
 
 ## Canonical URLs
-- English homepage: https://keepessence.app/
-- Chinese homepage: https://keepessence.app/zh/
+- English homepage: https://www.keepessence.app/
+- Chinese homepage: https://www.keepessence.app/zh/
 - Remote MCP endpoint: https://keepessence.app/mcp
 
 ## What KeepEssence Is
