@@ -6,3 +6,8 @@
 wrangler.toml
 README.md
 LICENSE
+.build
+worker.js
+migrations
+node_modules
+.dev.vars

@@ -11,7 +11,7 @@
 KeepEssence is an anti-hoarding, AI-filtered reading inbox that connects directly to your own AI assistants (Claude, ChatGPT, Gemini, or self-hosted scheduled agents) over standard remote MCP (Streamable HTTP + OAuth).
 
 Instead of building an infinite archive with folders, manual tags, and search, KeepEssence separates **autonomous filtering** from **human-led internalization**:
-1. **Stash / Capture**: Save any link, article, video, code repository, post, screenshot, file, or text in one action across devices (Web, Browser Extension, iOS Shortcut in v1.0).
+1. **Stash / Capture**: Save any link, article, video, code repository, post, screenshot, file, or text in one action across devices (Web, Browser Extension, iOS Shortcut, phone share sheet, Mac menu bar).
 2. **4-Line AI Brief (Auto)**: A scheduled assistant reads each captured item by your rules and produces a fixed four-line brief: (1) What it is, (2) Facts, (3) Up to three takeaways, and (4) Verdict (`Worth digging into`, `Good to know`, or `Skip`). If an item relates to something previously captured or distilled, the brief includes a subtle cross-reference note.
 3. **9 PM Daily Digest (Auto)**: At 21:00 in your local timezone, KeepEssence compiles a plain-text nightly digest with four parts: Summary, Worth digging into, Everything else (collapsed), and One question before sleep—ending with a single calm button: `Read, good night`.
 4. **30-Day Quiet Auto-Expiry**: Raw captured items and their briefs auto-expire after 30 days by default (configurable up to 1 year). Daily Digests never expire, so the summary line remains. Any item you explicitly mark `Keep` removes its expiry.
@@ -40,5 +40,5 @@ Instead of building an infinite archive with folders, manual tags, and search, K
 
 ## Frequently Asked Questions
 - **Does KeepEssence really delete saved links after 30 days?** Yes. Raw items and their 4-line briefs expire quietly after 30 days (configurable up to 1 year), while the summary sentence stays in your Daily Digest permanently. Clicking `Keep` on any item removes its expiry.
-- **Why are there no folders or search?** KeepEssence is a filter before your permanent notes, not a long-term archive. Distilled Notes are self-contained, downloadable artifacts you can export anywhere, and your connected AI assistant can still retrieve past digests and notes as context during a Deep Dive.
+- **Why are there no folders?** KeepEssence is a filter before your permanent notes, not a long-term archive. The Notes you keep can be found with a quick search and exported anywhere; raw captured items are not searchable. Your connected AI assistant can still retrieve past digests and notes as context during a Deep Dive.
 - **Where does my data go when I connect an external AI?** During OAuth authorization, KeepEssence states explicitly that content is sent to the assistant you select, scopes permissions per assistant, and allows one-click revocation at any time.

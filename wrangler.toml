@@ -1,6 +1,7 @@
-# Deploys the static site to Cloudflare Workers (static assets, no script).
+# Deploys the website to Cloudflare Workers: static files, plus worker.js for the beta sign-up form.
 # Deploy: CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID in the environment, then `wrangler deploy`.
 name = "keepessence-site"
+main = "worker.js"
 compatibility_date = "2026-11-01"
 workers_dev = false
 preview_urls = false
@@ -11,3 +12,14 @@ routes = [
 
 [assets]
 directory = "."
+binding = "ASSETS"
+# Only these paths reach worker.js; everything else is served straight from the static files.
+run_worker_first = ["/api/*", "/enrolled", "/enrolled/", "/enrolled.csv"]
+
+# Beta sign-ups. The id is not a secret. After adding a file to migrations/, run
+# `wrangler d1 migrations apply keepessence-waitlist --remote`.
+[[d1_databases]]
+binding = "WAITLIST"
+database_name = "keepessence-waitlist"
+database_id = "42912f0f-09f6-4f54-93e6-56c23c9bd17d"
+migrations_dir = "migrations"
