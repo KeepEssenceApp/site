@@ -11,7 +11,11 @@ What it checks, and why:
   5. examples    every example card carries the badge; the three cards are there
   6. parity      the English page has the same structure as the Chinese one, and is what make_en.py makes
   7. links       every in-page link has its target; every file the pages name exists
-It stops at the first failing group and exits 1. Needs only Python 3."""
+  8. llms.txt    the text for assistants (/llms.txt) makes none of the claims the pages must not make, and the share
+                 image: no draft is served or named by a page. With --release it also fails while the share image
+                 is still the old one (it has the old tagline in the picture): run it that way before publishing.
+It reports every problem and exits 1. Needs only Python 3."""
+import hashlib
 import html
 import os
 import re
@@ -200,8 +204,45 @@ for k, page in text.items():
         if not os.path.exists(os.path.normpath(os.path.join(base, ref))):
             fail("links", f"{PAGES[k]}: {ref} does not exist")
 
+# ---------------------------------------------------------------- 8. llms.txt and the share image
+llms = open("llms.txt", encoding="utf-8").read()
+for pat, what in NOT_CLAIMED + [(r"200 items|v1\.0", "a quota or a roadmap (not announced)")]:
+    for m in re.finditer(pat, llms):
+        ctx = llms[max(0, m.start() - 12): m.end() + 12].replace("\n", " ")
+        fail("llms.txt", f"mentions {what}: …{ctx}…")
+for name in ("Claude", "ChatGPT", "Gemini", "Readwise", "Raindrop", "Instapaper", "Burn 451"):
+    if name in llms:
+        fail("llms.txt", f"names {name} (not verified as connected; no comparisons)")
+if "阅尽千芳" in llms:
+    fail("llms.txt", "carries the tagline that uses a flower image")
+for m in re.finditer(r"Chrome|Edge|Brave", llms):
+    ctx = llms[max(0, m.start() - 80): m.end() + 80]
+    if not re.search(r"not (?:yet|been) tried", ctx):
+        fail("llms.txt", f"names {m.group(0)} as supported (only tested in Chromium): …{ctx.strip()}…")
+
+# The share image the pages name is the one that is served. A draft is never served, and no page names it.
+OLD_SHARE_IMAGE_SHA256 = "44b75cca2a9be8b90cb8a32fbe21c559ca1fb48f29604a3de5b5274d3c178091"  # "Save freely. Keep the essence. · 阅尽千芳，只留精华" in the picture
+if ".build" not in open(".assetsignore", encoding="utf-8").read().split():
+    fail("share image", ".build is not in .assetsignore: the draft image under it would be served")
+for root, _dirs, files in os.walk("."):
+    if root.startswith(("./.git", "./.build", "./node_modules")):
+        continue
+    for name in files:
+        if "DRAFT" in name.upper():
+            fail("share image", f"{os.path.join(root, name)}: a draft outside .build is served")
+for k, page in text.items():
+    if "DRAFT" in page:
+        fail("share image", f"{PAGES[k]}: names a draft file")
+share = "assets/keepessence-og-1200x630.png"
+if os.path.exists(share) and hashlib.sha256(open(share, "rb").read()).hexdigest() == OLD_SHARE_IMAGE_SHA256:
+    note = f"{share} is still the old share image (the old tagline is in the picture): replace it with the approved one before publishing"
+    if "--release" in sys.argv:
+        fail("release", note)
+    else:
+        print("note:", note)
+
 if fails:
     print("\n".join(fails))
     print(f"\n{len(fails)} problem(s)")
     sys.exit(1)
-print("ok: tokens, words, gold, one button, examples, parity, links")
+print("ok: tokens, words, gold, one button, examples, parity, links, llms.txt, share image")

@@ -8,11 +8,12 @@ Source of the KeepEssence website: static pages, plus one small Worker that stor
 | `index.html` | 英文首页 |
 | `zh/index.html` | 中文首页 |
 | `assets/` | 图标、标志、分享图 |
-| `llms.txt`、`robots.txt`、`sitemap.xml` | 给搜索引擎和 AI 的说明 |
+| `llms.txt`、`robots.txt`、`sitemap.xml` | 给搜索引擎和 AI 的说明。`llms.txt` 的文字由 Marketing 写（marketing 仓库 `content/site-refresh-2026-11-27/llms.txt`），这里整份照用 |
 | `worker.js` | 接收内测报名（`POST /api/v1/waitlist`），存进 D1 数据库。不发邮件 |
 | `migrations/` | 报名数据库的表结构 |
 | `.build/make_en.py` | 从中文页生成英文页的脚本 |
-| `.build/check.py` | 两个页面的检查：配色是不是 spec 的 token、用词、金色、示例角标、中英结构一致、链接 |
+| `.build/check.py` | 两个页面的检查：配色是不是 spec 的 token、用词、金色、示例角标、中英结构一致、链接；`llms.txt` 不带旧说法；分享图 |
+| `.build/og-draft/` | 分享图的**草稿**，不是线上资源：不在 `assets/`，页面不引用，`.assetsignore` 不让它发布。见里面的 README |
 
 ## 怎么看
 
@@ -39,6 +40,8 @@ python3 .build/check.py        # 要有 ../spec 这个仓库在旁边，或者�
 - **一个主按钮**：页面上的按钮只有一个标签（申请内测），首屏和结尾各一次。
 - **示例**：三张示意卡片（解读、每日摘要、月历）各有「示例」角标。
 - 中英两页结构一致，英文页就是 `make_en.py` 生成的那一份，页内链接和引用的文件都在。
+- **`llms.txt`** 不带旧说法（快捷指令、菜单栏、保留天数、点名助手、报价、没逐个试过的浏览器）。
+- **分享图**：草稿（文件名带 DRAFT）不在发布的目录里、页面不引用；`python3 .build/check.py --release` 在分享图还是旧的那张（图里有旧标语）时报错，发布前要这样跑一次。
 
 页面上关于产品能做什么的话，只写 `marketing` 的 `IMPLEMENTATION-FACTS.md` 和验收记录里验过的。
 
