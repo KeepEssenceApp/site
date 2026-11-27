@@ -12,6 +12,7 @@ Source of the KeepEssence website: static pages, plus one small Worker that stor
 | `worker.js` | 接收内测报名（`POST /api/v1/waitlist`），存进 D1 数据库。不发邮件 |
 | `migrations/` | 报名数据库的表结构 |
 | `.build/make_en.py` | 从中文页生成英文页的脚本 |
+| `.build/check.py` | 两个页面的检查：配色是不是 spec 的 token、用词、金色、示例角标、中英结构一致、链接 |
 
 ## 怎么看
 
@@ -23,13 +24,23 @@ python3 -m http.server 8000
 
 ## 怎么改
 
-改中文页 `zh/index.html`。英文页 `index.html` 不要手改：它由脚本从中文页生成，结构、样式和动效与中文页一致，英文文案写在脚本里。改完中文页后运行：
+改中文页 `zh/index.html`。英文页 `index.html` 不要手改：它由脚本从中文页生成，结构、样式和脚本与中文页一致，英文文案写在 `.build/make_en.py` 里。改完中文页后运行：
 
 ```
 python3 .build/make_en.py
+python3 .build/check.py        # 要有 ../spec 这个仓库在旁边，或者加 --spec <spec 里 design/tokens.css 的路径>
 ```
 
-脚本会报告还没翻译的中文。新增或改动了中文文案，要在脚本里补上对应的英文。
+`make_en.py` 在中文页有一句英文里没有对应、或英文页里还剩中文时会停下来，列出是哪几句。`check.py` 检查：
+
+- **配色、圆角、字号**是 spec 的设计 token（`design/tokens.css`）：页面里 `tokens:start` 到 `tokens:end` 之间是原样的拷贝，和 spec 差一个值就报错。spec 改了 token，这里改完再跑。
+- **用词**：词表里不用的词、品牌稿里写明不能写成已上线的能力（快捷指令、菜单栏、PDF、保留天数、点名某个助手已接通、没逐个试过的浏览器）。
+- **金色**只在「值得深挖」的判定和月历的金点上。
+- **一个主按钮**：页面上的按钮只有一个标签（申请内测），首屏和结尾各一次。
+- **示例**：三张示意卡片（解读、每日摘要、月历）各有「示例」角标。
+- 中英两页结构一致，英文页就是 `make_en.py` 生成的那一份，页内链接和引用的文件都在。
+
+页面上关于产品能做什么的话，只写 `marketing` 的 `IMPLEMENTATION-FACTS.md` 和验收记录里验过的。
 
 ## 内测报名
 
