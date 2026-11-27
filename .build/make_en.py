@@ -43,6 +43,11 @@ R = [
  ('<a class="lang" href="/" hreflang="en" lang="en">EN</a>', '<a class="lang" href="/zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>'),
  ('<a href="/" hreflang="en" lang="en">EN</a>', '<a href="/zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>'),
  ('<span><strong>精华</strong> · 存得下很多，只留精华</span>', '<span><strong>Keep Essence</strong> · Save a lot, keep only the essence</span>'),
+ # style: the hero phrase stays together when it fits and wraps inside itself when it does not. In Chinese the phrase is
+ # a few characters wide and `nowrap` is enough; "Keep only the essence." is 345px at the display size, wider than the
+ # text column of a screen under 375px, so with `nowrap` the page scrolled sideways at 320, 340 and 360 (QA, site#3).
+ ('    .nb { white-space: nowrap; }',
+  '    .nb { display: inline-block; }'),
  # hero
  ('<h1>存得下很多，<span class="nb">只留<strong>精华</strong>。</span></h1>', '<h1>Save a lot. <span class="nb">Keep only the <strong>essence</strong>.</span></h1>'),
  ('<p class="claim">先帮我看清，再由我决定。</p>', '<p class="claim">Help me see clearly first, then I decide.</p>'),
@@ -132,6 +137,14 @@ R = [
  ('>B 站</label>', '>Bilibili</label>'),
  ('>即刻</label>', '>Jike</label>'),
  ('>微博</label>', '>Weibo</label>'),
+ # The English page offered Substack, LinkedIn and Medium before the page was rebuilt from the Chinese one, and the Worker
+ # still accepts and shows them. The Chinese page does not have them; the English page keeps them, between the Chinese
+ # platforms and X, in the order of the Worker's list (worker.js SOURCES). check.py holds the line.
+ ('<label class="popt"><input type="checkbox" name="content_sources" value="x">X / Twitter</label>',
+  '<label class="popt"><input type="checkbox" name="content_sources" value="substack">Substack</label>\n'
+  '              <label class="popt"><input type="checkbox" name="content_sources" value="linkedin">LinkedIn</label>\n'
+  '              <label class="popt"><input type="checkbox" name="content_sources" value="medium">Medium</label>\n'
+  '              <label class="popt"><input type="checkbox" name="content_sources" value="x">X / Twitter</label>'),
  ('>邮件订阅</label>', '>Email newsletters</label>'),
  ('>播客</label>', '>Podcasts</label>'),
  ('你最常用哪个 AI 助手？', 'Which AI assistant do you use most?'),

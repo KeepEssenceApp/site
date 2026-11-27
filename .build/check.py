@@ -10,6 +10,9 @@ What it checks, and why:
   4. one button  every button outside the confirmation window has the same label (the one main button)
   5. examples    every example card carries the badge; the three cards are there
   6. parity      the English page has the same structure as the Chinese one, and is what make_en.py makes
+  6b. form       the English form offers every value the Worker accepts (so nobody who could sign up before cannot now),
+                 the Chinese form only values the Worker accepts; the two forms differ in the three English-only sources
+                 and nowhere else; the English headline phrase is not `nowrap` (it overflowed a 360px screen)
   7. links       every in-page link has its target; every file the pages name exists
   8. llms.txt    the text for assistants (/llms.txt) makes none of the claims the pages must not make, and the share
                  image: no draft is served or named by a page. With --release it also fails while the share image
@@ -175,7 +178,14 @@ for k, page in text.items():
         fail("examples", f"{PAGES[k]}: an example card whose first child is not the badge")
 
 # ---------------------------------------------------------------- 6. parity
+# Sources the English form offers and the Chinese form does not (they were the English page's own before it was built
+# from the Chinese one; the Worker accepts them). They are the one allowed difference between the forms.
+EN_ONLY_SOURCES = ["substack", "linkedin", "medium"]
+ONLY_EN_LABEL = re.compile(r'[ \t]*<label class="popt"><input type="checkbox" name="content_sources" value="(?:%s)">[^<]*</label>\n' % "|".join(EN_ONLY_SOURCES))
+
+
 def skeleton(page):
+    page = ONLY_EN_LABEL.sub("", page)
     body = page[page.index("<body"):]
     body = re.sub(r"<script.*?</script>", "<script/>", body, flags=re.S)
     out = []
@@ -192,6 +202,53 @@ if skeleton(text["zh"]) != skeleton(text["en"]):
 r = subprocess.run([sys.executable, ".build/make_en.py", "--check"], capture_output=True, text=True)
 if r.returncode != 0:
     fail("parity", (r.stdout + r.stderr).strip().splitlines()[0] if (r.stdout + r.stderr).strip() else "make_en.py --check failed")
+
+# ---------------------------------------------------------------- 6b. form
+def inputs(page):
+    out = []
+    for m in re.finditer(r"<input\b([^>]*)>", page):
+        attrs = dict(re.findall(r'\b([a-z-]+)="([^"]*)"', m.group(1)))
+        if attrs.get("name"):
+            out.append((attrs["name"], attrs.get("type", ""), attrs.get("value", ""), attrs.get("maxlength", "")))
+    return out
+
+
+worker = open("worker.js", encoding="utf-8").read()
+
+
+def worker_list(const):
+    m = re.search(r"const %s = \[(.*?)\];" % const, worker, re.S)
+    return re.findall(r'"([^"]+)"', m.group(1)) if m else []
+
+
+# form field -> the Worker's list of values it accepts
+FIELDS = {"current_habit": "STORAGE", "content_sources": "SOURCES", "primary_assistant": "ASSISTANTS"}
+forms = {k: inputs(v) for k, v in text.items()}
+for field, const in FIELDS.items():
+    accepted = worker_list(const)
+    if not accepted:
+        fail("form", f"worker.js has no {const} list (this check reads it)")
+        continue
+    offered = {k: {v for n, _t, v, _m in forms[k] if n == field} for k in forms}
+    lost = [v for v in accepted if v not in offered["en"]]
+    if lost:
+        fail("form", f"the English form no longer offers {', '.join(lost)} for {field}, which the Worker accepts")
+    odd = sorted(offered["zh"] - set(accepted)) + sorted(offered["en"] - set(accepted))
+    if odd:
+        fail("form", f"{field}: a value the Worker does not accept is offered: {', '.join(sorted(set(odd)))}")
+# the forms differ in the English-only sources and nowhere else
+zh_rest = [i for i in forms["zh"]]
+en_rest = [i for i in forms["en"] if not (i[0] == "content_sources" and i[2] in EN_ONLY_SOURCES)]
+if zh_rest != en_rest:
+    fail("form", "the Chinese and English forms differ in more than the English-only sources (the fields, their order, their values or limits)")
+if sorted(i[2] for i in forms["en"] if i[0] == "content_sources" and i[2] in EN_ONLY_SOURCES) != sorted(EN_ONLY_SOURCES):
+    fail("form", f"the English form is missing one of {', '.join(EN_ONLY_SOURCES)}")
+for k, page in text.items():
+    if k == "zh":
+        continue
+    rule = re.search(r"\.nb\s*\{([^}]*)\}", page)
+    if rule and "nowrap" in rule.group(1):
+        fail("form", "the English `.nb` rule is `nowrap`: \"Keep only the essence.\" is 345px and the page scrolls sideways under 375px")
 
 # ---------------------------------------------------------------- 7. links
 for k, page in text.items():
@@ -245,4 +302,4 @@ if fails:
     print("\n".join(fails))
     print(f"\n{len(fails)} problem(s)")
     sys.exit(1)
-print("ok: tokens, words, gold, one button, examples, parity, links, llms.txt, share image")
+print("ok: tokens, words, gold, one button, examples, parity, form, links, llms.txt, share image")
