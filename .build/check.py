@@ -120,7 +120,9 @@ APPROVED_BROWSER_LINE = {
     "index.html": ("<li>The iPhone app is not open for installation</li>", "<li>Saving from the extension's toolbar button was tested in Chromium. In desktop Brave and Edge, connecting an account and saving from the toolbar passed only in an automated test against a local test service, not the real one; installing it by hand, clicking it yourself and the right-click menu are not tested there yet. The extension's features have not been verified in Google Chrome yet</li>"),
     "llms.txt": ("the browser extension in Chromium-based browsers ", "(saving from its toolbar button was tested in Chromium; in desktop Brave and Edge, connecting an account and saving from the toolbar passed only in an automated test against a local test service, not the real one, and installing it by hand, clicking it yourself and the right-click menu are not tested there yet; the extension's features have not been verified in Google Chrome yet)"),
 }
-BROWSER = re.compile(r"Chrome|Edge|Brave")
+# Every way these three are named: the English names (also next to Chinese text), the same words in lower case, the makers' names, and
+# 谷歌 / 微软. Chromium is not one of them (the Chromium sentence is a separate, approved statement).
+BROWSER = re.compile(r"Chrome|Edge|Brave|Google|Microsoft|谷歌|微软|(?<![A-Za-z])(?:chrome|edge|brave)(?![A-Za-z])")
 
 
 def page_units(page):
