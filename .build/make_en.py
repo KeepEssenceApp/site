@@ -35,7 +35,7 @@ for pat in [r'(<meta name="description" content=")[^"]*(">)', r'(<meta property=
 
 FAQ = [
  ("Everything expires after 30 days. Will it clear out something I wanted?",
-  "No. Tap Keep on anything you want and it never expires. Anything in your deep-dive queue is protected too. What expires is the raw item — its one-line summary and the original link stay in your Daily Digest for good. The notes you keep are permanent and quick to find."),
+  "No. Tap Keep on anything you want and it never expires. Anything in your deep-dive queue is protected too. The notes you keep are permanent and quick to find."),
  ("I don't have an AI assistant and I've never used MCP. Can I still use it?",
   "Yes. During the beta you can use the built-in agent and connect nothing yourself. If you later want your own Claude, ChatGPT or Gemini, you paste one address into its settings and tap Allow."),
  ("Is it free now? Will it cost money later?",
