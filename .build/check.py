@@ -108,20 +108,19 @@ NOT_CLAIMED = [
     (r"App 随|app comes with", "the phone app coming with the beta"), (r"付费|收费(?!.*内测)|paid|price", "pricing"),
 ]
 
-# Chrome, Edge and Brave. The extension was tested only in Chromium, so these three may be named only to say they were not tested
-# (or were only loaded in a test setup). Two checks, the same for the pages and for llms.txt:
-#  1. the whole line: when a browser is named, the approved line about them is there word for word. Nothing can be added to it or swapped
-#     for it, not even a claim that names no browser ("saving works in all of them"). When the line is re-approved, change it here in the same commit.
-#  2. each clause: a piece of text that names a browser says by itself that it was not tested. A piece ends at . ; : , a bracket, a line end or a
-#     word like "but" / 而, so a "not tested" about one browser never covers a claim about another, whichever comes first.
+# Chrome, Edge and Brave. Saving from the extension's toolbar button was tested in Chromium. What is known about these three is said in
+# ONE approved line, in one place, and nowhere else. The check is the same for the pages and for llms.txt:
+#  1. the approved line (APPROVED_BROWSER_LINE) is there word for word, directly after its approved neighbour (the item before it on the
+#     pages, the start of the extension's sentence in llms.txt). Nothing can be added to it, swapped in it or moved elsewhere, and a page
+#     that names a browser without it fails. When the line is re-approved, change it here in the same commit as the text.
+#  2. with that line taken out, no text names a browser at all: not as support, and not as "not tested" either. There is no list of
+#     negation words or conjunctions to widen, so a new statement about a browser anywhere else is an error until it is approved and put here.
 APPROVED_BROWSER_LINE = {
-    "zh/index.html": "<li>浏览器扩展点工具栏按钮存入只在 Chromium 里测过；在桌面版 Brave 和 Edge 里只以测试方式加载过、离线打开过选项页，照说明手动安装、连接账号和存入都还没测；Chrome 还没单独试过</li>",
-    "index.html": "<li>Saving from the extension's toolbar button was tested only in Chromium. In desktop Brave and Edge it was only loaded in a test setup and its options page opened offline; installing it by hand, connecting your account and saving are not tested there yet. Chrome has not been tried on its own</li>",
-    "llms.txt": "(saving from its toolbar button was tested in Chromium; in desktop Brave and Edge it was only loaded in a test setup and its options page opened offline, and installing it by hand, connecting your account and saving are not tested there yet; Chrome has not been tried on its own)",
+    "zh/index.html": ("<li>iPhone App 暂不开放安装</li>", "<li>浏览器扩展点工具栏按钮存入在 Chromium 里测过；在桌面版 Brave 和 Edge 里，连接账号和点工具栏存入只在连本机测试服务的自动化测试里走通，没连真实服务；照说明手动安装、亲手点按和右键菜单都还没测；尚未在 Google Chrome 上验证扩展功能</li>"),
+    "index.html": ("<li>The iPhone app is not open for installation</li>", "<li>Saving from the extension's toolbar button was tested in Chromium. In desktop Brave and Edge, connecting an account and saving from the toolbar passed only in an automated test against a local test service, not the real one; installing it by hand, clicking it yourself and the right-click menu are not tested there yet. The extension's features have not been verified in Google Chrome yet</li>"),
+    "llms.txt": ("the browser extension in Chromium-based browsers ", "(saving from its toolbar button was tested in Chromium; in desktop Brave and Edge, connecting an account and saving from the toolbar passed only in an automated test against a local test service, not the real one, and installing it by hand, clicking it yourself and the right-click menu are not tested there yet; the extension's features have not been verified in Google Chrome yet)"),
 }
 BROWSER = re.compile(r"Chrome|Edge|Brave")
-NOT_TESTED = re.compile(r"还没单独试|只以测试方式|还没测|has not been tried|only loaded in a test setup|not tested")
-CLAUSE_END = re.compile(r"[。.；;：:，,!?！？()（）\n]|\b(?:but|while|whereas|though|although|except)\b|而|但是?|不过|只是|却|除了", re.I)
 
 
 def page_units(page):
@@ -137,17 +136,19 @@ def page_units(page):
     return [html.unescape(u) for u in [body, *attrs, *metas, *titles]]
 
 
-def browser_problems(label, raw, units):
-    """label: the file's name (a key of APPROVED_BROWSER_LINE). raw: the file as it is. units: the text a reader gets from it."""
+def browser_problems(label, raw, units_of):
+    """label: the file's name (a key of APPROVED_BROWSER_LINE). raw: the file as it is. units_of: the file's text -> what a reader gets from it."""
+    before, line = APPROVED_BROWSER_LINE[label]
+    placed = re.search("(?:%s)(\\s*)(%s)" % (re.escape(before), re.escape(line)), raw)
     out = []
-    if any(BROWSER.search(u) for u in units) and APPROVED_BROWSER_LINE[label] not in raw:
-        out.append("names a browser, but the line about them is not the approved one word for word "
-                   "(nothing may be added to it or swapped for it; a re-approved line is changed in APPROVED_BROWSER_LINE in .build/check.py)")
-    for u in units:
-        for clause in CLAUSE_END.split(u):
-            found = sorted(set(BROWSER.findall(clause)))
-            if found and not NOT_TESTED.search(clause):
-                out.append(f"names {', '.join(found)} as supported (only tested in Chromium): …{' '.join(clause.split())[:120]}…")
+    if any(BROWSER.search(u) for u in units_of(raw)) and not placed:
+        out.append("names a browser, but the approved browser line is not there word for word in its place "
+                   "(nothing may be added to it, swapped in it or moved; a re-approved line is changed in APPROVED_BROWSER_LINE in .build/check.py)")
+    rest = raw if not placed else raw[: placed.start(2)] + raw[placed.end(2):]
+    for u in units_of(rest):
+        m = BROWSER.search(u)
+        if m:
+            out.append(f"names {', '.join(sorted(set(BROWSER.findall(u))))} outside the approved browser line: …{' '.join(u[max(0, m.start() - 40): m.end() + 40].split())}…")
     return out
 
 
@@ -176,8 +177,8 @@ for k, page in text.items():
             fail("words", f"{PAGES[k]}: names {name} outside the sign-up question (not verified as connected)")
     if "阅尽千芳" in page:
         fail("words", f"{PAGES[k]}: still carries the tagline that uses a flower image")
-    # Chrome, Edge and Brave: only as browsers the extension was not tested in (see APPROVED_BROWSER_LINE above)
-    for msg in browser_problems(PAGES[k], page, page_units(page)):
+    # Chrome, Edge and Brave: named only in the approved line, in its place (see APPROVED_BROWSER_LINE above)
+    for msg in browser_problems(PAGES[k], page, page_units):
         fail("words", f"{PAGES[k]}: {msg}")
 
 # ---------------------------------------------------------------- 3. gold
@@ -314,7 +315,7 @@ for name in ("Claude", "ChatGPT", "Gemini", "Readwise", "Raindrop", "Instapaper"
         fail("llms.txt", f"names {name} (not verified as connected; no comparisons)")
 if "阅尽千芳" in llms:
     fail("llms.txt", "carries the tagline that uses a flower image")
-for msg in browser_problems("llms.txt", llms, [llms]):
+for msg in browser_problems("llms.txt", llms, lambda t: [t]):
     fail("llms.txt", msg)
 
 # The share image the pages name is the one that is served. A draft is never served, and no page names it.
