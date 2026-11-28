@@ -132,10 +132,10 @@ for k, page in text.items():
             fail("words", f"{PAGES[k]}: names {name} outside the sign-up question (not verified as connected)")
     if "阅尽千芳" in page:
         fail("words", f"{PAGES[k]}: still carries the tagline that uses a flower image")
-    # Chrome, Edge and Brave are named only as browsers the extension has NOT been tried in one by one
+    # Chrome, Edge and Brave are named only as browsers the extension has NOT been tried or tested in (loaded in a test setup only counts as not tested)
     for m in re.finditer(r"Chrome|Edge|Brave", scan_nf):
         ctx = scan_nf[max(0, m.start() - 60): m.end() + 80]
-        if not re.search(r"还没有|not been tried|没有逐个", ctx):
+        if not re.search(r"还没有|not been tried|没有逐个|还没单独试|只以测试方式|还没测|only loaded in a test setup|not tested", ctx):
             fail("words", f"{PAGES[k]}: names {m.group(0)} as supported (only tested in Chromium): …{ctx.strip()}…")
 
 # ---------------------------------------------------------------- 3. gold
@@ -274,7 +274,7 @@ if "阅尽千芳" in llms:
     fail("llms.txt", "carries the tagline that uses a flower image")
 for m in re.finditer(r"Chrome|Edge|Brave", llms):
     ctx = llms[max(0, m.start() - 80): m.end() + 80]
-    if not re.search(r"not (?:yet|been) tried", ctx):
+    if not re.search(r"not (?:yet|been) tried|only loaded in a test setup|not tested", ctx):
         fail("llms.txt", f"names {m.group(0)} as supported (only tested in Chromium): …{ctx.strip()}…")
 
 # The share image the pages name is the one that is served. A draft is never served, and no page names it.
