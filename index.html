@@ -227,6 +227,9 @@
     .wform { display: grid; gap: 20px; }
     .wlbl { display: block; font-size: var(--ke-size-secondary); font-weight: 600; margin-bottom: 8px; }
     .wlbl .opt { color: var(--ke-text-3); font-weight: 400; }
+    /* each choice question is a group named by its own title (the legend); the browser's fieldset frame is switched off */
+    .wgrp { border: 0; margin: 0; padding: 0; min-width: 0; }
+    legend.wlbl { width: 100%; padding: 0; }
     .winp { width: 100%; min-height: var(--ke-control-height); padding: 0 16px; border: 1px solid var(--ke-line); border-radius: var(--ke-radius); background: var(--ke-card); color: var(--ke-text); font: inherit; }
     .winp::placeholder { color: var(--ke-text-3); }
     .winp.more { margin-top: 8px; }
@@ -413,8 +416,8 @@
             <input class="winp" id="wl-email" name="email" type="email" required autocomplete="email" placeholder="you@domain.com">
           </div>
 
-          <div>
-            <span class="wlbl">Where does everything you save pile up now?<span class="opt">(pick any)</span></span>
+          <fieldset class="wgrp">
+            <legend class="wlbl">Where does everything you save pile up now?<span class="opt">(pick any)</span></legend>
             <div class="pills">
               <label class="popt"><input type="checkbox" name="current_habit" value="readwise">Readwise</label>
               <label class="popt"><input type="checkbox" name="current_habit" value="raindrop">Raindrop</label>
@@ -425,10 +428,10 @@
               <label class="popt"><input type="checkbox" name="current_habit" value="other" data-other-for="current_habit_other">Other</label>
             </div>
             <input class="winp more" name="current_habit_other" type="text" maxlength="60" placeholder="Where else?" aria-label="Another place you keep things" data-other-input hidden>
-          </div>
+          </fieldset>
 
-          <div>
-            <span class="wlbl">Where do you usually find things to save?<span class="opt">(pick any)</span></span>
+          <fieldset class="wgrp">
+            <legend class="wlbl">Where do you usually find things to save?<span class="opt">(pick any)</span></legend>
             <div class="pills">
               <label class="popt"><input type="checkbox" name="content_sources" value="wechat-mp">WeChat Official Accounts</label>
               <label class="popt"><input type="checkbox" name="content_sources" value="xiaohongshu">Xiaohongshu</label>
@@ -450,10 +453,10 @@
               <label class="popt"><input type="checkbox" name="content_sources" value="other" data-other-for="content_sources_other">Other</label>
             </div>
             <input class="winp more" name="content_sources_other" type="text" maxlength="60" placeholder="Where else?" aria-label="Another source" data-other-input hidden>
-          </div>
+          </fieldset>
 
-          <div>
-            <span class="wlbl">Which AI assistant do you use most?</span>
+          <fieldset class="wgrp">
+            <legend class="wlbl">Which AI assistant do you use most?</legend>
             <div class="pills">
               <label class="popt"><input type="radio" name="primary_assistant" value="claude" checked>Claude</label>
               <label class="popt"><input type="radio" name="primary_assistant" value="chatgpt">ChatGPT</label>
@@ -461,15 +464,15 @@
               <label class="popt"><input type="radio" name="primary_assistant" value="self-hosted-agent">Self-hosted agent</label>
               <label class="popt"><input type="radio" name="primary_assistant" value="none">None yet</label>
             </div>
-          </div>
+          </fieldset>
 
-          <div>
-            <span class="wlbl">How would you rather use it?</span>
+          <fieldset class="wgrp">
+            <legend class="wlbl">How would you rather use it?</legend>
             <div class="pills">
               <label class="popt"><input type="radio" name="seed_track" value="byo-now" checked>Connect my own assistant over MCP</label>
               <label class="popt"><input type="radio" name="seed_track" value="hosted-later">Use the built-in agent during the beta</label>
             </div>
-          </div>
+          </fieldset>
 
           <div>
             <label class="wlbl" for="wl-note">What annoys you most about the tool you use now?<span class="opt">(optional)</span></label>

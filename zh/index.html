@@ -227,6 +227,9 @@
     .wform { display: grid; gap: 20px; }
     .wlbl { display: block; font-size: var(--ke-size-secondary); font-weight: 600; margin-bottom: 8px; }
     .wlbl .opt { color: var(--ke-text-3); font-weight: 400; }
+    /* each choice question is a group named by its own title (the legend); the browser's fieldset frame is switched off */
+    .wgrp { border: 0; margin: 0; padding: 0; min-width: 0; }
+    legend.wlbl { width: 100%; padding: 0; }
     .winp { width: 100%; min-height: var(--ke-control-height); padding: 0 16px; border: 1px solid var(--ke-line); border-radius: var(--ke-radius); background: var(--ke-card); color: var(--ke-text); font: inherit; }
     .winp::placeholder { color: var(--ke-text-3); }
     .winp.more { margin-top: 8px; }
@@ -413,8 +416,8 @@
             <input class="winp" id="wl-email" name="email" type="email" required autocomplete="email" placeholder="you@domain.com">
           </div>
 
-          <div>
-            <span class="wlbl">你存的东西，现在都堆在哪儿？<span class="opt">（可多选）</span></span>
+          <fieldset class="wgrp">
+            <legend class="wlbl">你存的东西，现在都堆在哪儿？<span class="opt">（可多选）</span></legend>
             <div class="pills">
               <label class="popt"><input type="checkbox" name="current_habit" value="readwise">Readwise</label>
               <label class="popt"><input type="checkbox" name="current_habit" value="raindrop">Raindrop</label>
@@ -425,10 +428,10 @@
               <label class="popt"><input type="checkbox" name="current_habit" value="other" data-other-for="current_habit_other">其他</label>
             </div>
             <input class="winp more" name="current_habit_other" type="text" maxlength="60" placeholder="还有哪里？" aria-label="其他存放的地方" data-other-input hidden>
-          </div>
+          </fieldset>
 
-          <div>
-            <span class="wlbl">你一般从哪里收集内容？<span class="opt">（可多选）</span></span>
+          <fieldset class="wgrp">
+            <legend class="wlbl">你一般从哪里收集内容？<span class="opt">（可多选）</span></legend>
             <div class="pills">
               <label class="popt"><input type="checkbox" name="content_sources" value="wechat-mp">微信公众号</label>
               <label class="popt"><input type="checkbox" name="content_sources" value="xiaohongshu">小红书</label>
@@ -447,10 +450,10 @@
               <label class="popt"><input type="checkbox" name="content_sources" value="other" data-other-for="content_sources_other">其他</label>
             </div>
             <input class="winp more" name="content_sources_other" type="text" maxlength="60" placeholder="还有哪里？" aria-label="其他内容来源" data-other-input hidden>
-          </div>
+          </fieldset>
 
-          <div>
-            <span class="wlbl">你最常用哪个 AI 助手？</span>
+          <fieldset class="wgrp">
+            <legend class="wlbl">你最常用哪个 AI 助手？</legend>
             <div class="pills">
               <label class="popt"><input type="radio" name="primary_assistant" value="claude" checked>Claude</label>
               <label class="popt"><input type="radio" name="primary_assistant" value="chatgpt">ChatGPT</label>
@@ -458,15 +461,15 @@
               <label class="popt"><input type="radio" name="primary_assistant" value="self-hosted-agent">自托管 Agent</label>
               <label class="popt"><input type="radio" name="primary_assistant" value="none">暂时没有</label>
             </div>
-          </div>
+          </fieldset>
 
-          <div>
-            <span class="wlbl">你更想用哪种方式？</span>
+          <fieldset class="wgrp">
+            <legend class="wlbl">你更想用哪种方式？</legend>
             <div class="pills">
               <label class="popt"><input type="radio" name="seed_track" value="byo-now" checked>通过 MCP 接入我自己的助手</label>
               <label class="popt"><input type="radio" name="seed_track" value="hosted-later">内测阶段用系统自带的 Agent</label>
             </div>
-          </div>
+          </fieldset>
 
           <div>
             <label class="wlbl" for="wl-note">现在用的收藏工具，最让你头疼的是什么？<span class="opt">（选填）</span></label>
