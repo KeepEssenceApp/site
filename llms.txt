@@ -1,6 +1,6 @@
 # Keep Essence / KeepEssence (精华)
 
-> Save freely. Keep the essence. Everything you capture passes through a calm filter—raw links fade after 30 days, and your own assistant (via MCP + OAuth) helps sift and distill only what stays with you.
+> Save a lot. Keep only the essence. An assistant reads what you save first and tells you what it says and whether it is worth your time; whether to keep it or dig deeper is up to you. In beta, open only to invited emails.
 
 ## Canonical URLs
 - English homepage: https://www.keepessence.app/
@@ -8,37 +8,28 @@
 - Remote MCP endpoint: https://keepessence.app/mcp
 
 ## What KeepEssence Is
-KeepEssence is an anti-hoarding, AI-filtered reading inbox that connects directly to your own AI assistants (Claude, ChatGPT, Gemini, or self-hosted scheduled agents) over standard remote MCP (Streamable HTTP + OAuth).
+KeepEssence is a reading inbox with an assistant that reads first. You save; the assistant tells you what each item says and whether it is worth your time; you decide what to keep. It can also connect to an assistant you already use, if that assistant supports remote MCP.
 
-Instead of building an infinite archive with folders, manual tags, and search, KeepEssence separates **autonomous filtering** from **human-led internalization**:
-1. **Stash / Capture**: Save any link, article, video, code repository, post, screenshot, file, or text in one action across devices (Web, Browser Extension, iOS Shortcut, phone share sheet, Mac menu bar).
-2. **4-Line AI Brief (Auto)**: A scheduled assistant reads each captured item by your rules and produces a fixed four-line brief: (1) What it is, (2) Facts, (3) Up to three takeaways, and (4) Verdict (`Worth digging into`, `Good to know`, or `Skip`). If an item relates to something previously captured or distilled, the brief includes a subtle cross-reference note.
-3. **9 PM Daily Digest (Auto)**: At 21:00 in your local timezone, KeepEssence compiles a plain-text nightly digest with four parts: Summary, Worth digging into, Everything else (collapsed), and One question before sleep—ending with a single calm button: `Read, good night`.
-4. **30-Day Quiet Auto-Expiry**: Raw captured items and their briefs auto-expire after 30 days by default (configurable up to 1 year). Daily Digests never expire, so the summary line remains. Any item you explicitly mark `Keep` removes its expiry.
-5. **Three-Tier Reading Depth**:
-   - **Brief (Auto)**: Fast 4-line triage.
-   - **Close Read (Auto Prep)**: Queue an item into your Deep-Dive Queue and a scheduled assistant deeply reads it and gathers related context before you sit down.
-   - **Deep Dive (Human + AI)**: Open the item in Claude, ChatGPT, or Gemini via MCP, interrogate it in dialogue, and save a standalone permanent **Note** (exportable artifact with source URL and title).
-6. **Monthly Grid**: A privacy-safe, embeddable SVG/PNG dot calendar (one dot per day, 7 per row) showing capture, digest, and note-distillation rhythm with zero titles, zero usernames, no gamified counters, and no nagging. Gold appears only on days a permanent Note was distilled.
+1. **Save**: Paste a link, text or an image into the web app (it opens in a browser on a computer or a phone). On a computer, a browser extension for Chromium-based browsers saves the current page in one click; it is installed by hand, is not in any store yet, and the steps come with your invitation.
+2. **Four-line analysis**: Within a few minutes the built-in assistant writes four lines: a summary, a key fact, up to three key points, and a verdict.
+3. **Daily digest**: After 9 PM in your time zone, a one-page digest is written: what is worth a deep dive, the rest, and a question to sleep on, ending with `Read. Good night`. It picks from items that have been processed (including any that couldn't be analysed) and haven't been in a digest yet, up to a set limit per digest, so it can include items from earlier days. Not everything saved that day is sure to be in it; items not deleted may appear in a later digest, on no set day.
+4. **Deep dive and notes**: Pick what is worth it, talk it through with an assistant, and keep it as your own note. Notes have a quick find and can be downloaded as Markdown. On a day you keep a note, the calendar shows a gold dot.
+5. **Pages that cannot be read**: Some pages (for example ones that ask you to sign in or verify) cannot be fetched. KeepEssence then says "Content could not be fetched" and links the original instead of guessing.
 
-## Remote MCP + OAuth Integration
-- **Endpoint**: `https://keepessence.app/mcp` (identical for all users; not a credential).
-- **Protocol**: Streamable HTTP with OAuth authorization. Users authorize per assistant on KeepEssence's approval page, choose allowed steps, and can revoke any assistant in one click.
-- **Supported Assistants**:
-  - **Claude** (Chat Assistant — Deep Dive): All plans supported (free plan allows one custom connector). Reads context and writes permanent Notes back directly.
-  - **ChatGPT** (Chat Assistant — Deep Dive): Web via `chatgpt.com/plugins`. Personal plans are read-only (paste distilled result back in KeepEssence); Business, Enterprise, and Edu plans can write Notes back directly with confirmation.
-  - **Gemini** (Chat Assistant — Deep Dive): Web and mobile via `@KeepEssence` after setup in Connected Apps. Currently limited to US, 18+, personal Google accounts, English, with History enabled. Confirms before writing Notes.
-  - **Self-Hosted Scheduled Agent** (Scheduled Assistant — Briefs, 9 PM Daily Digest, Close Read, Deep Dive): Any MCP-capable agent over Streamable HTTP + OAuth on a schedule can claim pending items, submit 4-line briefs, compile nightly digests, and close-read queued items.
+## What Works Today (beta)
+- Yes: the web app on computer and phone browsers; the browser extension in Chromium-based browsers (saving from its toolbar button was tested in Chromium; in desktop Brave and Edge, connecting an account and saving from the toolbar passed only in local automated tests and has not yet been tested against the live service, and installing it by hand, clicking it yourself and the right-click menu are not tested there yet; the extension's features have not been verified in Google Chrome yet); the built-in assistant's analyses and daily digest; notes; connecting your own assistant over MCP.
+- Not yet: the iPhone app is not open for installation.
 
-## How KeepEssence Differs from Alternatives
-- **Vs. Endless archival readers (Readwise Reader, Raindrop.io, Instapaper, Notion Web Clipper)**: Archival tools are designed to store everything forever with folders, tags, and search, leading to unread backlogs. Even when they offer MCP, the assistant mainly queries a growing archive. KeepEssence enforces 30-day auto-expiry, removes folders and search, runs autonomous AI triage before you read, and saves permanent Notes only when you deep-dive.
-- **Vs. Countdown readers (Burn 451)**: Countdown tools rely on short 24-hour "read or burn" urgency while still maintaining an article archive. KeepEssence avoids 24-hour countdown anxiety: AI filters calmly throughout the day, compiles a 9 PM Daily Digest, lets raw links expire quietly after 30 days, and connects natively over remote MCP + OAuth without local `npx` setup.
+## Remote MCP Integration
+- **Endpoint**: `https://keepessence.app/mcp` (the same for all users; it is an address, not a credential).
+- You approve each assistant on KeepEssence's approval page.
+- A standard remote MCP client has been connected end to end on the live service. Specific assistant products have not each been tested; whether yours works depends on its own MCP support.
+- No assistant of your own is needed: the built-in assistant writes the analyses and the daily digest.
 
-## Pricing Model
-- **Free**: Core platform, built-in routing assistant (free tier up to 200 items/day), and Bring Your Own Assistants via MCP + OAuth.
-- **Paid (Planned post-v1.0)**: Hosted autonomous assistants for users who want zero-setup automated briefs, nightly digests, and close reads without self-hosting.
+## Pricing
+- The built-in assistant is free during the beta. Nothing beyond the beta has been announced.
 
 ## Frequently Asked Questions
-- **Does KeepEssence really delete saved links after 30 days?** Yes. Raw items and their 4-line briefs expire quietly after 30 days (configurable up to 1 year), while the summary sentence stays in your Daily Digest permanently. Clicking `Keep` on any item removes its expiry.
-- **Why are there no folders?** KeepEssence is a filter before your permanent notes, not a long-term archive. The Notes you keep can be found with a quick search and exported anywhere; raw captured items are not searchable. Your connected AI assistant can still retrieve past digests and notes as context during a Deep Dive.
-- **Where does my data go when I connect an external AI?** During OAuth authorization, KeepEssence states explicitly that content is sent to the assistant you select, scopes permissions per assistant, and allows one-click revocation at any time.
+- **Do I need my own AI assistant?** No. The built-in assistant writes the analyses and the daily digest.
+- **Is there a phone app?** Not yet for installation. Use the web app in your phone's browser.
+- **Can anyone sign up?** Not yet. The beta is open only to invited emails; you can apply on the homepage.
