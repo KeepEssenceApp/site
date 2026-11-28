@@ -77,8 +77,8 @@ R = [
  ('</i>值得深挖</span>', '</i>Worth a deep dive</span>'),
  # daily digest
  ('<h2>每日摘要</h2>', '<h2>Daily digest</h2>'),
- ('每晚 21:00 之后，把今天存的东西整理成一页：值得深挖的、其余的，再加一个睡前问题。看完点「读了，晚安」。',
-  'After 9 PM every night, what you saved today becomes one page: what is worth a deep dive, the rest, and a question to sleep on. When you have read it, tap “Read. Good night”.'),
+ ('每晚 21:00 之后，助手写一页每日摘要：值得深挖的、其余的，再加一个睡前问题。看完点「读了，晚安」。摘要从已经解读过（含没能解读出结果的）、还没进过摘要的条目里挑，每份有上限，所以可能有前几天的；当天存的不一定都在这一份里，没删除的之后可能进某一份，但不固定是哪天。',
+  "After 9 PM every night, the assistant writes one page: what is worth a deep dive, the rest, and a question to sleep on. When you have read it, tap “Read. Good night”. It picks from items that have been processed (including any we couldn't analyse) and haven't been in a digest yet, up to a set limit per digest, so it can include items from earlier days. Not everything you saved that day is sure to be in it; items you haven't deleted may appear in a later digest, but not on a set day."),
  ('aria-label="示例：一份每日摘要"', 'aria-label="Example: one daily digest"'),
  ('<h3>这份每日摘要里有 6 条。2 条值得深挖的还没处理。</h3>', '<h3>6 in this daily digest. 2 worth a deep dive not dealt with yet.</h3>'),
  ('<b>总结</b>今天存的多是任务队列和代码评审的文章，其中两条值得细读。',

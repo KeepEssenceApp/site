@@ -12,7 +12,7 @@ KeepEssence is a reading inbox with an assistant that reads first. You save; the
 
 1. **Save**: Paste a link, text or an image into the web app (it opens in a browser on a computer or a phone). On a computer, a browser extension for Chromium-based browsers saves the current page in one click; it is installed by hand, is not in any store yet, and the steps come with your invitation.
 2. **Four-line analysis**: Within a few minutes the built-in assistant writes four lines: a summary, a key fact, up to three key points, and a verdict.
-3. **Daily digest**: After 9 PM in your time zone, what you saved that day becomes one page: what is worth a deep dive, the rest, and a question to sleep on, ending with `Read. Good night`.
+3. **Daily digest**: After 9 PM in your time zone, a one-page digest is written: what is worth a deep dive, the rest, and a question to sleep on, ending with `Read. Good night`. It picks from items that have been processed (including any that couldn't be analysed) and haven't been in a digest yet, up to a set limit per digest, so it can include items from earlier days. Not everything saved that day is sure to be in it; items not deleted may appear in a later digest, on no set day.
 4. **Deep dive and notes**: Pick what is worth it, talk it through with an assistant, and keep it as your own note. Notes have a quick find and can be downloaded as Markdown. On a day you keep a note, the calendar shows a gold dot.
 5. **Pages that cannot be read**: Some pages (for example ones that ask you to sign in or verify) cannot be fetched. KeepEssence then says "Content could not be fetched" and links the original instead of guessing.
 
