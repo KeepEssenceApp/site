@@ -17,7 +17,7 @@ KeepEssence is a reading inbox with an assistant that reads first. You save; the
 5. **Pages that cannot be read**: Some pages (for example ones that ask you to sign in or verify) cannot be fetched. KeepEssence then says "Content could not be fetched" and links the original instead of guessing.
 
 ## What Works Today (beta)
-- Yes: the web app on computer and phone browsers; the browser extension in Chromium-based browsers (tested in Chromium only; not yet tried in Chrome, Edge and Brave one by one); the built-in assistant's analyses and daily digest; notes; connecting your own assistant over MCP.
+- Yes: the web app on computer and phone browsers; the browser extension in Chromium-based browsers (saving from its toolbar button was tested in Chromium; in desktop Brave and Edge it was only loaded in a test setup and its options page opened offline, and installing it by hand, connecting your account and saving are not tested there yet; Chrome has not been tried on its own); the built-in assistant's analyses and daily digest; notes; connecting your own assistant over MCP.
 - Not yet: the iPhone app is not open for installation.
 
 ## Remote MCP Integration
