@@ -107,6 +107,50 @@ NOT_CLAIMED = [
     (r"分享菜单|share sheet|装成应用", "a phone share entry (not verified on devices)"),
     (r"App 随|app comes with", "the phone app coming with the beta"), (r"付费|收费(?!.*内测)|paid|price", "pricing"),
 ]
+
+# Chrome, Edge and Brave. The extension was tested only in Chromium, so these three may be named only to say they were not tested
+# (or were only loaded in a test setup). Two checks, the same for the pages and for llms.txt:
+#  1. the whole line: when a browser is named, the approved line about them is there word for word. Nothing can be added to it or swapped
+#     for it, not even a claim that names no browser ("saving works in all of them"). When the line is re-approved, change it here in the same commit.
+#  2. each clause: a piece of text that names a browser says by itself that it was not tested. A piece ends at . ; : , a bracket, a line end or a
+#     word like "but" / 而, so a "not tested" about one browser never covers a claim about another, whichever comes first.
+APPROVED_BROWSER_LINE = {
+    "zh/index.html": "<li>浏览器扩展点工具栏按钮存入只在 Chromium 里测过；在桌面版 Brave 和 Edge 里只以测试方式加载过、离线打开过选项页，照说明手动安装、连接账号和存入都还没测；Chrome 还没单独试过</li>",
+    "index.html": "<li>Saving from the extension's toolbar button was tested only in Chromium. In desktop Brave and Edge it was only loaded in a test setup and its options page opened offline; installing it by hand, connecting your account and saving are not tested there yet. Chrome has not been tried on its own</li>",
+    "llms.txt": "(saving from its toolbar button was tested in Chromium; in desktop Brave and Edge it was only loaded in a test setup and its options page opened offline, and installing it by hand, connecting your account and saving are not tested there yet; Chrome has not been tried on its own)",
+}
+BROWSER = re.compile(r"Chrome|Edge|Brave")
+NOT_TESTED = re.compile(r"还没单独试|只以测试方式|还没测|has not been tried|only loaded in a test setup|not tested")
+CLAUSE_END = re.compile(r"[。.；;：:，,!?！？()（）\n]|\b(?:but|while|whereas|though|although|except)\b|而|但是?|不过|只是|却|除了", re.I)
+
+
+def page_units(page):
+    """What a reader gets from a page, one string per place: the body without the sign-up form (its questions name tools people use today,
+    they are not claims), each attribute value, and the head's title and descriptions. A block ending is a line end, so one list item never runs into the next."""
+    body = re.sub(r"<form.*?</form>|<script.*?</script>|<style.*?</style>", " ", page, flags=re.S)
+    body = body[body.index("<body"):]
+    attrs = re.findall(r'\s(?:aria-label|placeholder|alt|title)="([^"]*)"', body)
+    metas = re.findall(r'<meta (?:name|property)="[^"]*" content="([^"]*)"', page[: page.index("<body")])
+    titles = re.findall(r"<title>(.*?)</title>", page[: page.index("<body")])
+    block = r"</?(?:li|p|h[1-6]|div|ul|ol|dl|dd|dt|table|tr|td|th|section|article|details|summary|header|footer|nav|main|blockquote|figure|figcaption)\b[^>]*>|<br\s*/?>"
+    body = re.sub(r"<[^>]+>", " ", re.sub(block, "\n", body))
+    return [html.unescape(u) for u in [body, *attrs, *metas, *titles]]
+
+
+def browser_problems(label, raw, units):
+    """label: the file's name (a key of APPROVED_BROWSER_LINE). raw: the file as it is. units: the text a reader gets from it."""
+    out = []
+    if any(BROWSER.search(u) for u in units) and APPROVED_BROWSER_LINE[label] not in raw:
+        out.append("names a browser, but the line about them is not the approved one word for word "
+                   "(nothing may be added to it or swapped for it; a re-approved line is changed in APPROVED_BROWSER_LINE in .build/check.py)")
+    for u in units:
+        for clause in CLAUSE_END.split(u):
+            found = sorted(set(BROWSER.findall(clause)))
+            if found and not NOT_TESTED.search(clause):
+                out.append(f"names {', '.join(found)} as supported (only tested in Chromium): …{' '.join(clause.split())[:120]}…")
+    return out
+
+
 for k, page in text.items():
     vis = visible(page)
     for w in NOT_USED_ZH:
@@ -132,11 +176,9 @@ for k, page in text.items():
             fail("words", f"{PAGES[k]}: names {name} outside the sign-up question (not verified as connected)")
     if "阅尽千芳" in page:
         fail("words", f"{PAGES[k]}: still carries the tagline that uses a flower image")
-    # Chrome, Edge and Brave are named only as browsers the extension has NOT been tried or tested in (loaded in a test setup only counts as not tested)
-    for m in re.finditer(r"Chrome|Edge|Brave", scan_nf):
-        ctx = scan_nf[max(0, m.start() - 60): m.end() + 80]
-        if not re.search(r"还没有|not been tried|没有逐个|还没单独试|只以测试方式|还没测|only loaded in a test setup|not tested", ctx):
-            fail("words", f"{PAGES[k]}: names {m.group(0)} as supported (only tested in Chromium): …{ctx.strip()}…")
+    # Chrome, Edge and Brave: only as browsers the extension was not tested in (see APPROVED_BROWSER_LINE above)
+    for msg in browser_problems(PAGES[k], page, page_units(page)):
+        fail("words", f"{PAGES[k]}: {msg}")
 
 # ---------------------------------------------------------------- 3. gold
 for k, page in text.items():
@@ -272,10 +314,8 @@ for name in ("Claude", "ChatGPT", "Gemini", "Readwise", "Raindrop", "Instapaper"
         fail("llms.txt", f"names {name} (not verified as connected; no comparisons)")
 if "阅尽千芳" in llms:
     fail("llms.txt", "carries the tagline that uses a flower image")
-for m in re.finditer(r"Chrome|Edge|Brave", llms):
-    ctx = llms[max(0, m.start() - 80): m.end() + 80]
-    if not re.search(r"not (?:yet|been) tried|only loaded in a test setup|not tested", ctx):
-        fail("llms.txt", f"names {m.group(0)} as supported (only tested in Chromium): …{ctx.strip()}…")
+for msg in browser_problems("llms.txt", llms, [llms]):
+    fail("llms.txt", msg)
 
 # The share image the pages name is the one that is served. A draft is never served, and no page names it.
 OLD_SHARE_IMAGE_SHA256 = "44b75cca2a9be8b90cb8a32fbe21c559ca1fb48f29604a3de5b5274d3c178091"  # "Save freely. Keep the essence. · 阅尽千芳，只留精华" in the picture
